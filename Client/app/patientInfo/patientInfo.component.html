@@ -1,0 +1,46 @@
+<div class="container">
+    <h1>Hero Form</h1>
+    <form>
+        <div class="form-group">
+            <label for="id">ID</label>
+            <input type="number" class="form-control" id="id" [(ngModel)]="model.id" (ngModelChange)="model.id = $event" name="id" disabled>
+        </div>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="string" class="form-control" id="name" [(ngModel)]="model.name" (ngModelChange)="model.name = $event" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="dateOfBirth">Date of Birth</label>
+            <input type="date" class="form-control" id="dateOfBirth" [(ngModel)]="model.dateOfBirth" (ngModelChange)="model.dateOfBirth = $event" name="dateOfBirth" required>
+        </div>
+        <div class="form-group">
+            <label for="gender">Gender</label>
+            <select class="form-control" id="gender" [(ngModel)]="model.gender" (ngModelChange)="model.gender = $event" name="gender" required>
+                <option *ngFor="let gen of ['Male','Female']" [value]="gen">{{gen}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="weight">Weight</label>
+            <input type="number" class="form-control" id="weight" [(ngModel)]="model.weight" (ngModelChange)="model.weight = $event" name="weight" required>
+        </div>
+        <div class="form-group">
+            <label for="height">Height</label>
+            <input type="number" class="form-control" id="height" [(ngModel)]="model.height" (ngModelChange)="model.height = $event" name="height" required>
+        </div>
+        <div class="form-group">
+            <label for="race">Race</label>
+            <select class="form-control" id="race" [(ngModel)]="model.race" (ngModelChange)="model.race = $event" name="race" required>
+                <option *ngFor="let race of races" [value]="race">{{race}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="inclusionDate">Inclusion Date</label>
+            <input type="date" class="form-control" id="inclusionDate"[(ngModel)]="model.inclusionDate" (ngModelChange)="model.inclusionDate = $event" name="inclusionDate" required>
+        </div>
+        <div class="form-group">
+            <label for="general">General Comments</label>
+            <textarea class="form-control" id="general" [(ngModel)]="model.general" (ngModelChange)="model.general = $event" name="general" ></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
