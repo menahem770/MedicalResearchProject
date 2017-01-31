@@ -8,23 +8,32 @@ using System.Net;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace MRP.Service.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "GET, POST, PUT, DELETE, OPTIONS")]
     public class UsersController : ApiController
     {
-        LoginRegistrationManager manager = new LoginRegistrationManager();
+        LoginRegistrationManager manager;
+        public UsersController()
+        {
+            manager = new LoginRegistrationManager();
+        }
 
+        [HttpGet]
         public IEnumerable<UserDTO> Get()
         {
             return manager.GetUsers();
         }
 
+        [HttpGet]
         public UserDTO Get(int id)
         {
             return manager.GetUsers(id);
         }
 
+        [HttpPut]
         public HttpResponseMessage Put(int id, [FromBody]EditUserInfo uInfo)
         {
             if (manager.EditUser(id,uInfo))
@@ -33,7 +42,8 @@ namespace MRP.Service.Controllers
             }
             return new HttpResponseMessage(HttpStatusCode.BadRequest);
         }
-        
+
+        [HttpDelete]
         public HttpResponseMessage Delete(int id)
         {
             if (manager.DeleteUser(id))
@@ -43,6 +53,7 @@ namespace MRP.Service.Controllers
             return new HttpResponseMessage(HttpStatusCode.BadRequest);
         }
 
+        [HttpPost]
         public HttpResponseMessage Post(HttpRequestMessage req, [FromBody]LoginInfo logInfo)
         {
             UserDTO user = manager.Login(logInfo);
@@ -60,6 +71,7 @@ namespace MRP.Service.Controllers
             return new HttpResponseMessage(HttpStatusCode.BadRequest);
         }
 
+        [HttpPost]
         public HttpResponseMessage Post(HttpRequestMessage req, [FromBody]RegistrationInfo regInfo)
         {
             RegistrationResponse res = manager.Register(regInfo);
@@ -70,6 +82,7 @@ namespace MRP.Service.Controllers
             return new HttpResponseMessage(res.ErrorType == RegistrationErrorType.UsernameExist ? HttpStatusCode.Conflict : HttpStatusCode.InternalServerError);
         }
 
+        [HttpPost]
         public HttpResponseMessage Post(HttpRequestMessage req, [FromBody]RecoveryInfo recInfo)
         {
             PasswordRecoveryResponse res = manager.RecoverPassword(recInfo);

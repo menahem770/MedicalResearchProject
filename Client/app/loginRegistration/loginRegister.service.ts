@@ -11,24 +11,24 @@ import { RecoveryInfo } from './recoveryInfo';
 
 @Injectable()
 export class LoginRegistrationService{
-    private _url: string = 'api/products/products.json';
+    private _url: string = 'http://localhost:52091';
 
     constructor(private _http: Http){}
 
     loginSubmit(logInfo: LoginInfo): Observable<User> { 
-        return this._http.post(this._url,logInfo)
+        return this._http.post(this._url+"/api/Users",logInfo)
             .map((response: Response) => <User>response.json())
             .catch(this._handleError);
     }
 
     registrationSubmit(regInfo: RegistrationInfo): any {
-        return this._http.post(this._url,regInfo)
+        return this._http.post(this._url+"/api/Users",regInfo)
             .map((response: Response) => response.blob)
             .catch(this._handleError);
     }
 
     recoverySubmit(recInfo: RecoveryInfo): any {
-        return this._http.post(this._url,recInfo)
+        return this._http.post(this._url+"/api/Users",recInfo)
             .map((response: Response) => response.blob)
             .catch(this._handleError);
     }

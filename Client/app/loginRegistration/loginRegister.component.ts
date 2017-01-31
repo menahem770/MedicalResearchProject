@@ -40,7 +40,7 @@ export class LoginRegisterComponent{
         }
         else if(this.activeForm == 1){
             this._logRegService.registrationSubmit(this.regInfo)
-                .subscribe(res => <boolean>res ? this.switchToLoginForm() : this.errorMsg = 'Registration Failed',
+                .subscribe(res => <boolean>res ? this.activeForm = 0 : this.errorMsg = 'Registration Failed',
                            error => this.errorMsg = <any>error);
         }
         else{
