@@ -12,8 +12,6 @@ import { RecoveryInfo } from './recoveryInfo';
 @Injectable()
 export class LoginRegistrationService{
     private _url: string = 'http://localhost:52091';
-    private option: RequestOptions = new RequestOptions({headers:this.headers})
-    private headers: Headers = new Headers({"Content-Type":"application/json"})
     
     constructor(private _http: Http){ }
 
