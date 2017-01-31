@@ -13,6 +13,8 @@ using System.Web.Http.Cors;
 namespace MRP.Service.Controllers
 {
     //[EnableCors(origins: "http://localhost:3000", headers: "*", methods: "GET, POST, PUT, DELETE, OPTIONS")]
+    [Authorize]
+    [RoutePrefix("api/Account")]
     public class UsersController : ApiController
     {
         LoginRegistrationManager manager;

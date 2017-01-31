@@ -4,9 +4,9 @@ using System.Linq;
 using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartup(typeof(MRP.service.Startup))]
+[assembly: OwinStartup(typeof(MRP.Service.Startup))]
 
-namespace MRP.service
+namespace MRP.Service
 {
     public partial class Startup
     {

@@ -7,10 +7,11 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
+using MRP.Service.Models;
 
-
-namespace MRP.service.Providers
+namespace MRP.Service.Providers
 {
     public class ApplicationOAuthProvider : OAuthAuthorizationServerProvider
     {
@@ -31,17 +32,17 @@ namespace MRP.service.Providers
             var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
 
             ApplicationUser user = await userManager.FindAsync(context.UserName, context.Password);
-
+            context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "http://localhost:3000" });
             if (user == null)
             {
                 context.SetError("invalid_grant", "The user name or password is incorrect.");
                 return;
             }
 
-            ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager,
-               OAuthDefaults.AuthenticationType);
+            ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager, OAuthDefaults.AuthenticationType);
+            var propertyDictionary = new Dictionary<string, string> { { "userName", user.UserName } };
+            var properties = new AuthenticationProperties(propertyDictionary);
 
-            AuthenticationProperties properties = CreateProperties(user.UserName);
             AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
             context.Validated(ticket);
         }
@@ -80,15 +81,6 @@ namespace MRP.service.Providers
             }
 
             return Task.FromResult<object>(null);
-        }
-
-        public static AuthenticationProperties CreateProperties(string userName)
-        {
-            IDictionary<string, string> data = new Dictionary<string, string>
-            {
-                { "userName", userName }
-            };
-            return new AuthenticationProperties(data);
         }
     }
 }
