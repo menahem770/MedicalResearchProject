@@ -16,7 +16,10 @@ export class LoginRegistrationService{
     constructor(private _http: Http){ }
 
     loginSubmit(logInfo: LoginInfo): Observable<User> { 
-        return this._http.post(this._url+"/login",logInfo)
+        let headers: Headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+        let options: RequestOptions = new RequestOptions({ headers: headers ,});
+        let body: string = JSON.stringify("userName="+logInfo.username+"&password="+logInfo.password+"&grant_type=password" );
+        return this._http.post(this._url+"/Token",body,options)
             .map((response: Response) => <User>response.json())
             .catch(this._handleError);
     }
@@ -27,11 +30,11 @@ export class LoginRegistrationService{
             .catch(this._handleError);
     }
 
-    recoverySubmit(recInfo: RecoveryInfo): any {
-        return this._http.post(this._url+"/passwordRecovery",recInfo)
-            .map((response: Response) => response.blob)
-            .catch(this._handleError);
-    }
+    // recoverySubmit(recInfo: RecoveryInfo): any {
+    //     return this._http.post(this._url+"/passwordRecovery",recInfo)
+    //         .map((response: Response) => response.blob)
+    //         .catch(this._handleError);
+    // }
     
     private _handleError(error: Response) {
         console.error(error);
