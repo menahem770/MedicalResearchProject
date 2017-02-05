@@ -40,8 +40,8 @@ export class LoginRegisterComponent{
         }
         else if(this.activeForm == 1){
             this._logRegService.registrationSubmit(this.regInfo)
-                .subscribe(res => <boolean>res ? this.activeForm = 0 : this.errorMsg = 'Registration Failed',
-                           error => this.errorMsg = <any>error);
+                .subscribe((res:any) => <boolean>res ? this.activeForm = 0 : this.errorMsg = 'Registration Failed',
+                           (error:any) => this.errorMsg = <any>error);
         }
         // else{
         //     this._logRegService.recoverySubmit(this.recInfo)
