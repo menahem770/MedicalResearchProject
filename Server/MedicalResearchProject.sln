@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MRP.Common", "MRP.Common\MR
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MRP.BL", "MRP.BL\MRP.BL.csproj", "{F433D91E-8264-45B9-B426-6EAB74AA94EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MRP.Service", "MRP.Service\MRP.Service.csproj", "{955FF5B5-7825-47D5-BA45-4F20D6E82B39}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MRP.Service", "MRP.Service\MRP.Service.csproj", "{30FD00C9-BFB9-48F0-94A1-A97AC75E7E51}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{F433D91E-8264-45B9-B426-6EAB74AA94EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F433D91E-8264-45B9-B426-6EAB74AA94EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F433D91E-8264-45B9-B426-6EAB74AA94EF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{955FF5B5-7825-47D5-BA45-4F20D6E82B39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{955FF5B5-7825-47D5-BA45-4F20D6E82B39}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{955FF5B5-7825-47D5-BA45-4F20D6E82B39}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{955FF5B5-7825-47D5-BA45-4F20D6E82B39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30FD00C9-BFB9-48F0-94A1-A97AC75E7E51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30FD00C9-BFB9-48F0-94A1-A97AC75E7E51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30FD00C9-BFB9-48F0-94A1-A97AC75E7E51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30FD00C9-BFB9-48F0-94A1-A97AC75E7E51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

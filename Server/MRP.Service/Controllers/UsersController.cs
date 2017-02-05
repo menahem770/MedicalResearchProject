@@ -12,7 +12,9 @@ using System.Web.Http.Cors;
 
 namespace MRP.Service.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "GET, POST, PUT, DELETE, OPTIONS")]
+    //[EnableCors(origins: "http://localhost:3000", headers: "*", methods: "GET, POST, PUT, DELETE, OPTIONS")]
+    [Authorize]
+    [RoutePrefix("api/Account")]
     public class UsersController : ApiController
     {
         LoginRegistrationManager manager;
@@ -53,14 +55,14 @@ namespace MRP.Service.Controllers
             return new HttpResponseMessage(HttpStatusCode.BadRequest);
         }
 
-        [HttpPost]
+        [HttpPost, Route("login")]
         public HttpResponseMessage Post(HttpRequestMessage req, [FromBody]LoginInfo logInfo)
         {
             UserDTO user = manager.Login(logInfo);
             if (user != null)
             {
                 List<Claim> claims = new List<Claim> { new Claim("Subject", user.Username) };
-                return req.CreateResponse(HttpStatusCode.Accepted, new Tuple<UserDTO,JwtSecurityToken>(user, new JwtSecurityToken(
+                return req.CreateResponse(HttpStatusCode.Accepted, new Tuple<UserDTO, JwtSecurityToken>(user, new JwtSecurityToken(
                     issuer: "MRPServer",
                     audience: "MRPClient",
                     claims: claims,
@@ -71,7 +73,7 @@ namespace MRP.Service.Controllers
             return new HttpResponseMessage(HttpStatusCode.BadRequest);
         }
 
-        [HttpPost]
+        [HttpPost, Route("register")]
         public HttpResponseMessage Post(HttpRequestMessage req, [FromBody]RegistrationInfo regInfo)
         {
             RegistrationResponse res = manager.Register(regInfo);
@@ -82,7 +84,7 @@ namespace MRP.Service.Controllers
             return new HttpResponseMessage(res.ErrorType == RegistrationErrorType.UsernameExist ? HttpStatusCode.Conflict : HttpStatusCode.InternalServerError);
         }
 
-        [HttpPost]
+        [HttpPost,Route("passwordRecovery")]
         public HttpResponseMessage Post(HttpRequestMessage req, [FromBody]RecoveryInfo recInfo)
         {
             PasswordRecoveryResponse res = manager.RecoverPassword(recInfo);

@@ -43,11 +43,11 @@ export class LoginRegisterComponent{
                 .subscribe(res => <boolean>res ? this.activeForm = 0 : this.errorMsg = 'Registration Failed',
                            error => this.errorMsg = <any>error);
         }
-        else{
-            this._logRegService.recoverySubmit(this.recInfo)
-                .subscribe(res => <boolean>res ? this.errorMsg = 'a temperary password has been sent to your email' : this.errorMsg = 'Recovery Failed', 
-                           error => this.errorMsg = <any>error);
-        }
+        // else{
+        //     this._logRegService.recoverySubmit(this.recInfo)
+        //         .subscribe(res => <boolean>res ? this.errorMsg = 'a temperary password has been sent to your email' : this.errorMsg = 'Recovery Failed', 
+        //                    error => this.errorMsg = <any>error);
+        // }
     }
         
 }
