@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNet.Identity;
 using MRP.API.Models;
-using MRP.API.Services;
 using MRP.BL;
 using MRP.Common.DTO;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -28,7 +28,7 @@ namespace MRP.API.Controllers
                 return BadRequest(ModelState);
             }
 
-            IdentityResult result = await _manager.Register(info);
+            IdentityResult result = await _manager.CreateAsync(info);
 
             IHttpActionResult errorResult = GetErrorResult(result);
 
@@ -40,14 +40,9 @@ namespace MRP.API.Controllers
             return Created<UserDTO>("",null);
         }
 
-        protected override void Dispose(bool disposing)
+        public Task<IEnumerable<UserDTO>> GetAllUsersAsync()
         {
-            if (disposing)
-            {
-                _manager.Dispose();
-            }
-
-            base.Dispose(disposing);
+            return _manager.GetAllUsersAsync();
         }
 
         private IHttpActionResult GetErrorResult(IdentityResult result)

@@ -8,8 +8,13 @@ import { MaterialModule } from '@angular/material';
 
 
 import { AppComponent }  from './app.component';
+import { MainAppComponent } from './mainApp/mainApp.component';
 import { LoginRegisterComponent } from './loginRegistration/loginRegister.component';
 import { PatientInfoComponent } from './patientInfo/patientInfo.component';
+import { PatientBasicInfoComponent } from './patientInfo/patientInfo.basic.component';
+import { PatientAdvancedInfoComponent } from './patientInfo/patientInfo.advanced.component';
+import { TabComponent } from './shared/tabs/tab.component';
+import { TabsComponent } from './shared/tabs/tabs.component';
 
 @NgModule({
   imports:      [ BrowserModule,
@@ -26,7 +31,15 @@ import { PatientInfoComponent } from './patientInfo/patientInfo.component';
                     {path: '**', redirectTo: 'login', pathMatch:'full'}
                   ])
                 ],
-  declarations: [ AppComponent,LoginRegisterComponent,PatientInfoComponent ],
+  declarations: [ AppComponent,
+                  MainAppComponent,
+                  LoginRegisterComponent,
+                  PatientInfoComponent,
+                  PatientBasicInfoComponent,
+                  PatientAdvancedInfoComponent,
+                  TabComponent,
+                  TabsComponent 
+                ],
   providers:    [],
   bootstrap:    [ AppComponent ]
 })

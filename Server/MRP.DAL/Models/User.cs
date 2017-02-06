@@ -1,4 +1,4 @@
-﻿using MongoDB.AspNet.Identity;
+﻿using AspNet.Identity.MongoDB;
 using MRP.Common.DTO;
 using System;
 using System.Collections.Generic;
@@ -11,10 +11,7 @@ namespace MRP.DAL.Models
     public class User : IdentityUser
     {
         public string FullName { get; set; }
-        public string Password { get; set; }
-        public string EmailAddress { get; set; }
         public string ContactInfo { get; set; }
-        public AuthLevel AuthLevel { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string LicenceID { get; set; }
         public IEnumerable<MedicalInstitution> Institutions { get; set; }

@@ -1,27 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using MRP.Common.DTO;
 using MRP.DAL.Models;
 using MRP.DAL.Services;
-using MRP.Common;
 using Microsoft.AspNet.Identity;
-using MongoDB.AspNet.Identity;
+using MongoDB.Driver;
+using AspNet.Identity.MongoDB;
+using MRP.Common.IRepositories;
+using System.Configuration;
 
 namespace MRP.DAL.Repositories
 {
-    public class AuthRepository : IRpository
+    public class AuthRepository : IAuthRpository
     {
-        private UserManager<User> _userManager;
-        Random rand = new Random();
+        MongoClient _client;
+        IMongoDatabase _database;
+        IMongoCollection<User> _users;
+        //IMongoCollection<IdentityRole> _roles;
+        UserStore<User> _store;
+        //RoleStore<IdentityRole> _roleStore;
+        UserManager<User> _userManager;
+
 
         public AuthRepository()
         {
-            _userManager = new UserManager<User>(new UserStore<User>("Mongo"));
+            _client = new MongoClient(ConfigurationManager.ConnectionStrings["Mongo"].ConnectionString);
+            _database = _client.GetDatabase("MRPDB"/*ConfigurationManager.AppSettings.Get("MRPDB")*/);
+            _users = _database.GetCollection<User>("AspNetUsers");
+            _store = new UserStore<User>(_users);
+            _userManager = new UserManager<User>(_store);
+            //_roles = _database.GetCollection<IdentityRole>("roles");
+            //_roleStore = new RoleStore<IdentityRole>(_roles);
         }
 
+        public async Task<UserDTO> Login(string username, string password)
+        {
+            User user = await _userManager.FindAsync(username, password);
+            return user.ConvertToDTO();
+        }
 
         public async Task<IdentityResult> Register(RegistrationInfo regInfo)
         {
@@ -29,36 +45,26 @@ namespace MRP.DAL.Repositories
             {
                 UserName = regInfo.Username,
                 FullName = regInfo.Fullname,
-                EmailAddress = regInfo.EmailAddress,
+                Email = regInfo.EmailAddress,
                 DateOfBirth = regInfo.DateOfBirth,
                 ContactInfo = regInfo.ContactInfo,
-                AuthLevel = regInfo.AuthLevel,
+                Roles = regInfo.Roles,
                 LicenceID = regInfo.LicenceID,
                 Institutions = regInfo.Institutions.ConvertToModelExtension().ToList()
             };
             return await _userManager.CreateAsync(user, regInfo.Password);
-
         }
 
-        private async Task<User> FindUser(string username, string password)
+        private async Task<UserDTO> FindUser(string username, string password)
         {
             User user = await _userManager.FindAsync(username, password);
-
-            return user;
-        }
-
-        private async Task<User> FindUser(string username)
-        {
-            User user = await _userManager.FindByNameAsync(username);
-
-            return user;
+            return user.ConvertToDTO();
         }
 
         public void Dispose()
         {
             _userManager.Dispose();
         }
-
         //public PasswordRecoveryResponse RecoverPassword(RecoveryInfo recInfo)
         //{
         //    User user = _users.FirstOrDefault(u => u.EmailAddress == recInfo.EmailAddress && u.DateOfBirth == recInfo.DateOfBirth);

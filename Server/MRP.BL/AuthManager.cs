@@ -1,28 +1,44 @@
 ﻿using Microsoft.AspNet.Identity;
-using MRP.Common;
 using MRP.Common.DTO;
+using MRP.Common.IRepositories;
 using MRP.DAL.Repositories;
 using System;
 using System.Collections.Generic;
-
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MRP.BL
 {
-    public class AuthManager : IDisposable
+    public class AuthManager
     {
-        IRpository rep;
-        public AuthManager(IRpository repository)
+        IAuthRpository authRep;
+        IUsersRepository userRep;
+        public AuthManager(IAuthRpository ar,IUsersRepository ur)
         {
-            rep = repository;
+            authRep = ar;
+            userRep = ur;
         }
         public AuthManager()
         {
-            rep = new AuthRepository();
+            authRep = new AuthRepository();
+            userRep = new UsersRepository();
         }
+
+        
+        public Task<UserDTO> Login(string username, string password)
+        {
+            return authRep.Login(username,password);
+        }
+
+        public Task<IdentityResult> CreateAsync(RegistrationInfo regInfo)
+        {
+            return authRep.Register(regInfo);
+        }
+
+        public Task<IEnumerable<UserDTO>> GetAllUsersAsync()
+        {
+            return userRep.GetAllUsersAsync();
+        }
+
 
         //public IEnumerable<UserDTO> GetUsers()
         //{
@@ -38,10 +54,9 @@ namespace MRP.BL
         //{
         //    return rep.EditUser(id, uInfo);
         //}
-
-        //public UserDTO Login(LoginInfo logInfo)
+        //public Task<UserDTO> FindUser(string username, string password)
         //{
-        //    return rep.Login(logInfo);
+        //    return rep.FindUser(username, password);
         //}
 
         //public bool DeleteUser(int id)
@@ -53,15 +68,5 @@ namespace MRP.BL
         //{
         //    return rep.RecoverPassword(recInfo);
         //}
-
-        public Task<IdentityResult> Register(RegistrationInfo regInfo)
-        {
-            return rep.Register(regInfo);
-        }
-
-        public void Dispose()
-        {
-            rep.Dispose();
-        }
     }
 }
