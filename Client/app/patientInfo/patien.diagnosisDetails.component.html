@@ -5,22 +5,16 @@
                 <h3>Basic Patient Info</h3>
                 <form>
                     <div class="form-group">
-                        <label for="id">ID</label>
-                        <input type="number" class="form-control" id="id" [(ngModel)]="patient.id" (ngModelChange)="patient.id = $event" name="id">
+                        <label for="doctorName">Doctor's Name</label>
+                        <input type="string" class="form-control" id="doctorName" [(ngModel)]="patient.doctorName" (ngModelChange)="patient.doctorName = $event" name="doctorName" {{disable}}>
                     </div>
                     <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="string" class="form-control" id="name" [(ngModel)]="patient.name" (ngModelChange)="patient.name = $event" name="name" required>
+                        <label for="inPatient">In/Out Patient</label>
+                        <input type="checkbox" class="form-control" id="inPatient" [(ngModel)]="patient.inPatient" (ngModelChange)="patient.inPatient = $event" name="inPatient" required>
                     </div>
                     <div class="form-group">
-                        <label for="dateOfBirth">Date of Birth</label>
-                        <input type="date" class="form-control" id="dateOfBirth" [(ngModel)]="patient.dateOfBirth" (ngModelChange)="patient.dateOfBirth = $event" name="dateOfBirth" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="gender">Gender</label>
-                        <select class="form-control" id="gender" [(ngModel)]="patient.gender" (ngModelChange)="patient.gender = $event" name="gender" required>
-                            <option *ngFor="let gen of ['Male','Female']" [value]="gen">{{gen}}</option>
-                        </select>
+                        <label for="diagnosisDate">Date of Diagnosis</label>
+                        <input type="date" class="form-control" id="diagnosisDate"[(ngModel)]="patient.diagnosisDate" (ngModelChange)="patient.diagnosisDate = $event" name="diagnosisDate" required>
                     </div>
                     <div class="form-group">
                         <label for="weight">Weight</label>

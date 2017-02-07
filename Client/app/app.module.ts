@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, CanActivate } from '@angular/router';
 import { MaterialModule } from '@angular/material';
-// import 'hammerjs';
+import {DataTableModule} from "angular2-datatable";
 
 
 import { AppComponent }  from './app.component';
@@ -12,14 +12,16 @@ import { MainAppComponent } from './mainApp/mainApp.component';
 import { LoginRegisterComponent } from './loginRegistration/loginRegister.component';
 import { PatientInfoComponent } from './patientInfo/patientInfo.component';
 import { PatientBasicInfoComponent } from './patientInfo/patientInfo.basic.component';
-import { PatientAdvancedInfoComponent } from './patientInfo/patientInfo.advanced.component';
+import { PatientInfoDiagnosisListComponent } from './patientInfo/patientInfo.diagnosisList.component';
 import { TabComponent } from './shared/tabs/tab.component';
 import { TabsComponent } from './shared/tabs/tabs.component';
+import { DataFilterPipe } from './shared/dataFilter.pipe';
 
 @NgModule({
   imports:      [ BrowserModule,
                   FormsModule,
                   HttpModule,
+                  DataTableModule,
                   MaterialModule.forRoot(),
                   RouterModule.forRoot([
                     {path: 'login', component: LoginRegisterComponent},
@@ -36,9 +38,10 @@ import { TabsComponent } from './shared/tabs/tabs.component';
                   LoginRegisterComponent,
                   PatientInfoComponent,
                   PatientBasicInfoComponent,
-                  PatientAdvancedInfoComponent,
+                  PatientInfoDiagnosisListComponent,
                   TabComponent,
-                  TabsComponent 
+                  TabsComponent,
+                  DataFilterPipe 
                 ],
   providers:    [],
   bootstrap:    [ AppComponent ]

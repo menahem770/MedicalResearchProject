@@ -3,14 +3,15 @@ import { TabComponent } from './tab.component';
 
 @Component({
   selector: 'tabs',
+  styles: [' li{ cursor: pointer; }'],
   template:`
     <ul class="nav nav-tabs">
       <li *ngFor="let tab of tabs" (click)="selectTab(tab)" [class.active]="tab.active">
-        <a href="#">{{tab.title}}</a>
+        <a>{{tab.title}}</a>
       </li>
     </ul>
     <ng-content></ng-content>
-  `
+   `
 })
 export class TabsComponent implements AfterContentInit {
   

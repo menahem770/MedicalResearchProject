@@ -1,4 +1,11 @@
+<h1>{{pageTitle}}</h1>
 <tabs>
-    <tab [tabTitle]="Basic Info"><mrp-patient-basic></mrp-patient-basic></tab>
-    <tab tabTitle="Advanced Info"><mrp-patient-advanced></mrp-patient-advanced></tab>
+    <tab tabTitle="Basic Info">
+        <mrp-patient-basic [patient]='model'>
+        </mrp-patient-basic>
+    </tab>
+    <tab tabTitle="Advanced Info">
+        <mrp-patient-advanced [patient]='model'>
+        </mrp-patient-advanced>
+    </tab>
 </tabs>

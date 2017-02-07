@@ -10,5 +10,8 @@ import {TabComponent} from '../shared/tabs/tab.component';
 })
 export class PatientInfoComponent{
     pageTitle:string = 'Add/Edit Patient Info';
-    model:Patient = new Patient();
+    public model:Patient;
+    constructor(){
+        this.model = new Patient();
+    }
 }
