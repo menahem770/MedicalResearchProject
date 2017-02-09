@@ -7,8 +7,7 @@ export class PatientDiagnosis{
     inPatient: boolean;
     diagnosisDate: Date;
     dischargeDate: Date;
-    hartRate: number;
-    bloodPressure: string;
+    symptoms: DiagnosisSymptoms;
 
     // constructor(){
     //     this.patientId = 0;
@@ -22,6 +21,8 @@ export class PatientDiagnosis{
     // }
 }
 export class DiagnosisSymptoms{
+    hartRate: number;
+    bloodPressure: string;
     painfulLimb:SymptomInfo;
     cough:SymptomInfo;
     swollenLimb:SymptomInfo;

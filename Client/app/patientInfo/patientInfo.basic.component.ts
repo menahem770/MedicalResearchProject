@@ -1,4 +1,5 @@
 import { Component,Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { Patient,Gender,Race } from './../shared/patient';
 
 @Component({
@@ -11,7 +12,14 @@ export class PatientBasicInfoComponent{
     races:string[] = Object.keys(Race).map(k => Race[k]).filter(v => typeof v === "string") as string[];
     gender:string[] = Object.keys(Gender).map(k => Gender[k]);
 
-    addDiagnosis():void {
+    constructor(private router: Router){}
 
+    addDiagnosis(redirectTo:string):void {
+        this.router.navigate(['./'+redirectTo]);
+    }
+    createOrEditPatient():void {
+        //create or edit patient
+        //maybe redirect to main
+        //maybe after creation, stay to add diagnosis
     }
 }

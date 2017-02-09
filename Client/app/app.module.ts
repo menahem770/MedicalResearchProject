@@ -16,6 +16,7 @@ import { PatientInfoDiagnosisListComponent } from './patientInfo/patientInfo.dia
 import { TabComponent } from './shared/tabs/tab.component';
 import { TabsComponent } from './shared/tabs/tabs.component';
 import { DataFilterPipe } from './shared/dataFilter.pipe';
+import { PatientDiagnosisDetailsComponent } from './patientInfo/patient.diagnosisDetails.component';
 
 @NgModule({
   imports:      [ BrowserModule,
@@ -29,6 +30,7 @@ import { DataFilterPipe } from './shared/dataFilter.pipe';
                     {path: 'register', redirectTo: 'login/1', pathMatch:'full'},
                     {path: 'passwordrecovery', redirectTo: 'login/2', pathMatch:'full'},
                     {path: 'patientInfo', component: PatientInfoComponent},
+                    {path: 'patientDiagnosisDetails', component: PatientDiagnosisDetailsComponent},
                     {path: '', redirectTo: 'login', pathMatch:'full'},
                     {path: '**', redirectTo: 'login', pathMatch:'full'}
                   ])
@@ -39,6 +41,7 @@ import { DataFilterPipe } from './shared/dataFilter.pipe';
                   PatientInfoComponent,
                   PatientBasicInfoComponent,
                   PatientInfoDiagnosisListComponent,
+                  PatientDiagnosisDetailsComponent,
                   TabComponent,
                   TabsComponent,
                   DataFilterPipe 
