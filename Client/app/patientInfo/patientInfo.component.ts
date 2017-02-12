@@ -1,17 +1,32 @@
+import { ActivatedRoute } from '@angular/router';
 import { Component } from '@angular/core';
 import { Patient } from './../shared/patient';
 
-import {TabsComponent} from '../shared/tabs/tabs.component';
-import {TabComponent} from '../shared/tabs/tab.component';
+import { ComponentsPatientDataTransferService } from './componentsPatientDataTransfer.service';
+import { TabsComponent } from '../shared/tabs/tabs.component';
+import { TabComponent } from '../shared/tabs/tab.component';
 
 @Component({
     moduleId: module.id,
-    templateUrl: './patientInfo.component.html'
+    templateUrl: './patientInfo.component.html',
+    providers:[ComponentsPatientDataTransferService]
 })
 export class PatientInfoComponent{
-    pageTitle:string = 'Add/Edit Patient Info';
+    pageTitle:string;
+    public pageType:string;
     public model:Patient;
-    constructor(){
-        this.model = new Patient();
+
+    constructor(private route:ActivatedRoute,private dataService:ComponentsPatientDataTransferService){
+        let id:number = +this.route.snapshot.params['id'];
+        if(id == 0){
+            this.model = new Patient();
+            this.pageTitle = 'Add New Patient';
+            this.pageType = 'new';
+        }
+        else{
+            this.model = this.dataService.patient;
+            this.pageTitle = 'Edit Patient Info';
+            this.pageType = 'edit';
+        }
     }
 }

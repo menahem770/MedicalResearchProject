@@ -1,11 +1,11 @@
 <h1>{{pageTitle}}</h1>
 <tabs>
     <tab tabTitle="Basic Info">
-        <mrp-patient-basic [patient]='model'>
+        <mrp-patient-basic [patient]='model' [pageType]='pageType' *ngIf="model != undefined">
         </mrp-patient-basic>
     </tab>
     <tab tabTitle="Diagnosis List">
-        <mrp-patient-diagnosis-list [patient]='model'>
+        <mrp-patient-diagnosis-list [patient]='model' [pageType]='pageType' *ngIf="model != undefined">
         </mrp-patient-diagnosis-list>
     </tab>
 </tabs>

@@ -37,7 +37,7 @@
                 </div>
             </div>
         </div>
-        <div class="panel panel-default">
+        <div class="panel panel-default" *ngIf='showDiagnosis'>
             <div class="panel-heading">User information</div>
 
             <table class="table table-striped" [mfData]="data | dataFilter : filterQuery" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
@@ -62,9 +62,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let diag of mf.data">
+                    <tr *ngFor="let diag of mf.data;let i=index">
                         <td>
-                            <button (click)="openDetails(diag)" class="btn btn-primary">Details</button>
+                            <button (click)="openDetails(i)" class="btn btn-primary">Details</button>
                         </td>
                         <td>{{diag.doctorName}}</td>
                         <td>{{diag.diagnosisDate}}</td>

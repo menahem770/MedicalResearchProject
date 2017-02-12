@@ -1,5 +1,5 @@
 import { Patient } from './../shared/patient';
 
-export class ComponentsDiagnosisTransferService {
+export class ComponentsPatientDataTransferService {
   public patient: Patient;
 }

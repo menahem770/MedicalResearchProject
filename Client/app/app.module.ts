@@ -4,7 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, CanActivate } from '@angular/router';
 import { MaterialModule } from '@angular/material';
-import {DataTableModule} from "angular2-datatable";
+import { DataTableModule } from 'angular2-datatable';
+
 
 
 import { AppComponent }  from './app.component';
@@ -29,8 +30,8 @@ import { PatientDiagnosisDetailsComponent } from './patientInfo/patient.diagnosi
                     {path: 'login/:form', component: LoginRegisterComponent},
                     {path: 'register', redirectTo: 'login/1', pathMatch:'full'},
                     {path: 'passwordrecovery', redirectTo: 'login/2', pathMatch:'full'},
-                    {path: 'patientInfo', component: PatientInfoComponent},
-                    {path: 'patientDiagnosisDetails', component: PatientDiagnosisDetailsComponent},
+                    {path: 'patientInfo/:id', component: PatientInfoComponent},
+                    {path: 'patientDiagnosisDetails/:id', component: PatientDiagnosisDetailsComponent},
                     {path: '', redirectTo: 'login', pathMatch:'full'},
                     {path: '**', redirectTo: 'login', pathMatch:'full'}
                   ])

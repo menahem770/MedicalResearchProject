@@ -1,4 +1,4 @@
-import { Component,Input } from '@angular/core';
+import { Component,Input,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Patient,Gender,Race } from './../shared/patient';
 
@@ -7,19 +7,29 @@ import { Patient,Gender,Race } from './../shared/patient';
     moduleId: module.id,
     templateUrl:'./patientInfo.basic.component.html'
 })
-export class PatientBasicInfoComponent{
+export class PatientBasicInfoComponent implements OnInit{
     @Input() patient:Patient;
+    @Input() pageType:string;
     races:string[] = Object.keys(Race).map(k => Race[k]).filter(v => typeof v === "string") as string[];
     gender:string[] = Object.keys(Gender).map(k => Gender[k]);
+    addOrSave:string = "";
 
     constructor(private router: Router){}
-
-    addDiagnosis(redirectTo:string):void {
-        this.router.navigate(['./'+redirectTo]);
+    
+    ngOnInit() {
+        if(this.pageType == 'new'){
+            this.addOrSave = 'Add New';
+        }
+        else{
+            this.addOrSave = 'Save Changes';
+        }
     }
-    createOrEditPatient():void {
+    addDiagnosis(): void{
+        this.router.navigate(['./patientDiagnosisDetails/-1']);
+    }
+    onsubmit(): void{
         //create or edit patient
-        //maybe redirect to main
+        //add patient to dataservice
         //maybe after creation, stay to add diagnosis
     }
 }

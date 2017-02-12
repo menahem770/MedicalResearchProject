@@ -9,5 +9,6 @@ import { LoginRegistrationService } from '../loginRegistration/loginRegister.ser
 })
 export class MainAppComponent{
     pageTitle:string = 'Medical Research Project';
+    loginTitle:string = 'login';
     burgerButton:boolean = true;
 }

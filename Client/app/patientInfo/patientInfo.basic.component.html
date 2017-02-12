@@ -44,8 +44,8 @@
                         <label for="general">General Comments</label>
                         <textarea class="form-control" id="general" [(ngModel)]="patient.general" (ngModelChange)="patient.general = $event" name="general" ></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary" (click)='createOrEditPatient()'>Submit</button>
-                    <button type="button" class="btn btn-primary" (click)='addDiagnosis('patientDiagnosisDetails')'>Add Diagnosis</button>
+                    <button type="submit" class="btn btn-primary">{{addOrSave}}</button>
+                    <button type="button" class="btn btn-primary" (click)='addDiagnosis()' *ngIf='pageType == "edit"'>Add Diagnosis</button>
                 </form>
             </div>
         </div>
