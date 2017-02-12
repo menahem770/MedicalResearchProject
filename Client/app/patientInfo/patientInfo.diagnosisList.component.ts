@@ -11,19 +11,19 @@ import { PatientDiagnosis } from './../shared/patientDiagnosis';
 })
 export class PatientInfoDiagnosisListComponent implements OnInit{
     @Input() patient:Patient;
-    @Input() pageType:string;
     content:string = "advenced content here!";
     data:PatientDiagnosis[];
     filterQuery:string = "";
     rowsOnPage:number = 10;
     sortBy:string = "date";
     sortOrder:string = "desc";
-    showDiagnosis:boolean = this.patient.diagnosis && this.patient.diagnosis.length > 0;
+    showDiagnosis:boolean;
 
     constructor(private router:Router){}
 
     ngOnInit() {
         this.data = this.patient.diagnosis;
+        this.showDiagnosis = this.patient.diagnosis && this.patient.diagnosis.length > 0;
     }
 
     openDetails(diagnosisNum:number):void{

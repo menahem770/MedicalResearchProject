@@ -9,7 +9,6 @@ import { Patient,Gender,Race } from './../shared/patient';
 })
 export class PatientBasicInfoComponent implements OnInit{
     @Input() patient:Patient;
-    @Input() pageType:string;
     races:string[] = Object.keys(Race).map(k => Race[k]).filter(v => typeof v === "string") as string[];
     gender:string[] = Object.keys(Gender).map(k => Gender[k]);
     addOrSave:string = "";
@@ -17,7 +16,7 @@ export class PatientBasicInfoComponent implements OnInit{
     constructor(private router: Router){}
     
     ngOnInit() {
-        if(this.pageType == 'new'){
+        if(this.patient.id){
             this.addOrSave = 'Add New';
         }
         else{
