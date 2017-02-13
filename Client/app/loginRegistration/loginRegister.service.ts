@@ -3,7 +3,7 @@ import {Http,Response,RequestOptions,Headers} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-
+import { CONFIG } from './../shared/config';
 import { User } from './../shared/user';
 import { LoginInfo } from './loginInfo';
 import { RegistrationInfo } from './registrationInfo';
@@ -11,13 +11,13 @@ import { RecoveryInfo } from './recoveryInfo';
 
 @Injectable()
 export class LoginRegistrationService{
-    private _url: string = 'http://localhost:53100/';
+    private _url: string = CONFIG.apiUrl;
     
     constructor(private _http: Http){ }
 
     loginSubmit(logInfo: LoginInfo): Observable<User> { 
         let headers: Headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
-        let options: RequestOptions = new RequestOptions({ headers: headers ,});
+        let options: RequestOptions = new RequestOptions({ headers: headers });
         let body: string = "userName="+logInfo.username+"&password="+logInfo.password+"&grant_type=password";
         return this._http.post(this._url+"/Token",body,options)
             .map((response: Response) => <User>response.json())

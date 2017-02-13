@@ -1,4 +1,5 @@
 ﻿using Microsoft.Owin;
+using Microsoft.Owin.Cors;
 using Microsoft.Owin.Security.OAuth;
 using MRP.API.Providers;
 using Owin;
@@ -17,7 +18,7 @@ namespace MRP.API
             ConfigureOAuth(app);
 
             WebApiConfig.Register(config);
-            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
+            app.UseCors(CorsOptions.AllowAll);
             app.UseWebApi(config);
         }
 

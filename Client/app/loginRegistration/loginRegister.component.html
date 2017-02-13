@@ -18,6 +18,7 @@
 					</div>
 					<div class="panel-body">
 						<div class="row">
+							<h3 *ngIf='errorMsg != ""'>{{errorMsg}}</h3>
 							<div class="col-lg-12">
 								<form id="login-form" action="" method="post" role="form" *ngIf='activeForm == 0'>
 									<div class="form-group">

@@ -1,9 +1,4 @@
-export interface ILoginInfo{
+export class LoginInfo{
     username: string;
     password: string; 
-}
-export class LoginInfo implements ILoginInfo {
-    constructor(public username: string,
-                public password: string
-    ){}
 }

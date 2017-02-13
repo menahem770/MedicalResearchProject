@@ -8,17 +8,6 @@ export class PatientDiagnosis{
     diagnosisDate: Date;
     dischargeDate: Date;
     symptoms: DiagnosisSymptoms;
-
-    // constructor(){
-    //     this.patientId = 0;
-    //     this.doctorId = 0;
-    //     this.doctorName = "";
-    //     this.inPatient = true;
-    //     this.diagnosisDate = new Date();
-    //     this.dischargeDate = new Date();
-    //     this.hartRate = 60;
-    //     this.bloodPressure = "";
-    // }
 }
 export class DiagnosisSymptoms{
     hartRate: number;

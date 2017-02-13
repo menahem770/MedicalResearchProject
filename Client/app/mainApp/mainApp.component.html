@@ -20,7 +20,7 @@
             </ul>
         </md-sidenav>
         <div class='container my-content'>
-            <router-outlet></router-outlet>
+            <router-outlet [loggedInUser]='loggedInUser'></router-outlet>
         </div>
     </md-sidenav-container>
 </div>

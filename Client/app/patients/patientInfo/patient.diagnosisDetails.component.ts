@@ -1,8 +1,8 @@
+import { ComponentsDataTransferService } from './../../shared/componentsDataTransfer.service';
 import { Component,Input } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
-import { Patient } from './../shared/patient';
-import { PatientDiagnosis } from './../shared/patientDiagnosis';
-import { ComponentsPatientDataTransferService } from './ComponentsPatientDataTransfer.service';
+import { Patient } from '../../shared/patient';
+import { PatientDiagnosis } from '../../shared/patientDiagnosis';
 
 @Component({
     selector: 'mrp-patient-diagnosis-details',
@@ -15,9 +15,9 @@ export class PatientDiagnosisDetailsComponent{
     diagnosis: PatientDiagnosis;
     patient: Patient;
 
-    constructor(private router:Router,private route:ActivatedRoute,private dataService:ComponentsPatientDataTransferService){
+    constructor(private router:Router,private route:ActivatedRoute,private dataService:ComponentsDataTransferService){
         let id = +this.route.snapshot.params['id'];
-        this.patient = this.dataService.patient;
+        this.patient = this.dataService.queriedPatients[0];
         if(id >= 0 && this.patient.diagnosis && this.patient.diagnosis.length > id){
             this.diagnosis = this.patient.diagnosis[id];
             this.pageTitle = 'Edit Diagnosis for '+this.patient.name;
