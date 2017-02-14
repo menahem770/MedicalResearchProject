@@ -15,26 +15,30 @@ export class LoginRegistrationService{
     
     constructor(private _http: Http){ }
 
-    loginSubmit(logInfo: LoginInfo): Observable<User> { 
+    loginSubmit(logInfo: LoginInfo): Observable<any> { 
         let headers: Headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
         let options: RequestOptions = new RequestOptions({ headers: headers });
         let body: string = "userName="+logInfo.username+"&password="+logInfo.password+"&grant_type=password";
-        return this._http.post(this._url+"/Token",body,options)
-            .map((response: Response) => <User>response.json())
+        return this._http.post(this._url+"Token",body,options)
+            // .map((response: Response) => response.json())
             .catch(this._handleError);
     }
 
     registrationSubmit(regInfo: RegistrationInfo): any {
         return this._http.post(this._url+"api/Account/Register",regInfo)
+            .map((response: Response) => response.json)
+            .catch(this._handleError);
+    }
+
+    recoverySubmit(recInfo: RecoveryInfo): any {
+        return this._http.post(this._url+"/passwordRecovery",recInfo)
             .map((response: Response) => response.blob)
             .catch(this._handleError);
     }
 
-    // recoverySubmit(recInfo: RecoveryInfo): any {
-    //     return this._http.post(this._url+"/passwordRecovery",recInfo)
-    //         .map((response: Response) => response.blob)
-    //         .catch(this._handleError);
-    // }
+    logout(): void {
+        localStorage.removeItem('token');
+    }
     
     private _handleError(error: Response) {
         console.error(error);

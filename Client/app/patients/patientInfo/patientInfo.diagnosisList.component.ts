@@ -1,8 +1,8 @@
 import { Component,Input,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataTableModule } from "angular2-datatable";
-import { Patient } from './../shared/patient';
-import { PatientDiagnosis } from './../shared/patientDiagnosis';
+import { Patient } from '../../shared/patient';
+import { PatientDiagnosis } from '../../shared/patientDiagnosis';
 
 @Component({
     selector: 'mrp-patient-diagnosis-list',

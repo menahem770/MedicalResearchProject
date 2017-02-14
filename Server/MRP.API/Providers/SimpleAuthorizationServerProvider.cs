@@ -1,7 +1,10 @@
 ﻿using Microsoft.Owin.Security.OAuth;
 using MRP.BL;
 using MRP.Common.DTO;
+using Newtonsoft.Json;
+using System.IO;
 using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace MRP.API.Providers
@@ -23,6 +26,11 @@ namespace MRP.API.Providers
                 context.SetError("invalid_grant", "The user name or password is incorrect.");
                 return;
             }
+            context.Response.Body.Position = context.Response.Body.Length;
+            context.Response.Write("}");
+            context.Response.Body.Position = 0;
+            context.Response.Write(@"{""user"": " + JsonConvert.SerializeObject(user) + @",""token"":");
+
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);
             identity.AddClaim(new Claim("sub", context.UserName));
             user.Roles.ForEach(r => identity.AddClaim(new Claim("role", r)));

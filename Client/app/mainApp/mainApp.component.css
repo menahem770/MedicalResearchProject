@@ -6,3 +6,6 @@ html, body, material-app, md-sidenav-container, .my-content {
 .glyphicon-menu-hamburger {
   font-size: npx;
 }
+li a{
+  cursor: pointer;
+}

@@ -1,3 +1,4 @@
+
 export class User{
     userID: number;
     username: string;
@@ -6,5 +7,10 @@ export class User{
     contactInfo: string;
     authLevel: number;
     dateOfBirth: Date;
-    access_token: string;
+
+    fromJSON(json:Object) {
+        for (var propName in json)
+            this[propName] = json[propName];
+        return this;
+    }
 }

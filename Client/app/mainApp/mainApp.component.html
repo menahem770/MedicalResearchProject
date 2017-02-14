@@ -6,7 +6,8 @@
             </a>
             <a class='navbar-brand'>{{pageTitle}}</a>
             <ul class='nav navbar-nav'>
-                <li><a [routerLink]="['/login']">{{loginTitle}}</a></li>
+                <li *ngIf='loggedIn'>{{loginTitle}}</li>
+                <li *ngIf='loggedIn'><a (click)='logout()'>logout?</a></li>
             </ul>
         </div>
     </nav>
@@ -14,13 +15,13 @@
         <md-sidenav #start mode='push' (open)="sidenavlist.focus()">
             <ul class='list-group' #sidenavlist>
                 <li class="list-group-item"><a [routerLink]="['/research']" (click)='start.close()'>Research</a></li>
-                <li class="list-group-item"><a [routerLink]="['/personalInfo']">Edit Personal Info</a></li>
-                <li class="list-group-item"><a [routerLink]="['/patientInfo/0']">Add New Patient</a></li>
-                <li class="list-group-item"><a [routerLink]="['/userManagment']">User Managment</a></li>
+                <li class="list-group-item"><a [routerLink]="['/personalInfo']" (click)='start.close()'>Edit Personal Info</a></li>
+                <li class="list-group-item"><a [routerLink]="['/patientInfo/0']" (click)='start.close()'>Add New Patient</a></li>
+                <li class="list-group-item"><a [routerLink]="['/userManagment']" (click)='start.close()'>User Managment</a></li>
             </ul>
         </md-sidenav>
         <div class='container my-content'>
-            <router-outlet [loggedInUser]='loggedInUser'></router-outlet>
+            <router-outlet></router-outlet>
         </div>
     </md-sidenav-container>
 </div>

@@ -11,6 +11,12 @@ export class Patient{
     inclusionDate: Date;
     general: string;
     diagnosis:PatientDiagnosis[];
+
+    fromJSON(json:Object) {
+        for (var propName in json)
+            this[propName] = json[propName];
+        return this;
+    }
 }
 
 export enum Gender{

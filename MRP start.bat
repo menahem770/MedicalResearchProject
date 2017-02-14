@@ -1,2 +1,2 @@
-cd E:\Git Projects\Medical Research Project\Client
+cd C:\Users\mendy\Documents\MRP Project\Client
 npm start

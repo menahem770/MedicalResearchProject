@@ -11,7 +11,7 @@ export class ComponentsDataTransferService {
     // Observable string streams
     changeEmitted$ = this.emitChangeSource.asObservable();
     // Service message commands
-    emitChange(change: any) {
+    emitChange(change: User) {
         this.emitChangeSource.next(change);
     }
 }

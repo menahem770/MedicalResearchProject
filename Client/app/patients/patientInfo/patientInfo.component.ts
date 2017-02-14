@@ -9,8 +9,7 @@ import { TabComponent } from '../../shared/tabs/tab.component';
 
 @Component({
     moduleId: module.id,
-    templateUrl: './patientInfo.component.html'//,
-    //providers:[ComponentsDataTransferService]
+    templateUrl: './patientInfo.component.html'
 })
 export class PatientInfoComponent{
     pageTitle:string;

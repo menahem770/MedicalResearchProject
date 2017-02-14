@@ -1,6 +1,6 @@
 import { Component,Input,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Patient,Gender,Race } from './../shared/patient';
+import { Patient,Gender,Race } from '../../shared/patient';
 
 @Component({
     selector: 'mrp-patient-basic',
