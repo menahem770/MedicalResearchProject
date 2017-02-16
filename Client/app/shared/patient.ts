@@ -1,16 +1,16 @@
 import { PatientDiagnosis } from './patientDiagnosis'
 export class Patient{
 
-    id: number;
-    name: string;
-    dateOfBirth: Date;
-    gender: Gender;
-    weight: number;
-    height: number;
-    race: Race;
-    inclusionDate: Date;
-    general: string;
-    diagnosis:PatientDiagnosis[];
+    Id: number;
+    Name: string;
+    DateOfBirth: Date;
+    Gender: Gender;
+    Weight: number;
+    Height: number;
+    Race: Race;
+    InclusionDate: Date;
+    General: string;
+    Diagnosis:PatientDiagnosis[];
 
     fromJSON(json:Object) {
         for (var propName in json)

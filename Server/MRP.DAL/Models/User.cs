@@ -12,6 +12,7 @@ namespace MRP.DAL.Models
     {
         public string FullName { get; set; }
         public string ContactInfo { get; set; }
+        public AuthLevel AuthLevel { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string LicenceID { get; set; }
         public IEnumerable<MedicalInstitution> Institutions { get; set; }

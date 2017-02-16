@@ -1,8 +1,12 @@
+import { MedicalInstitution } from './../shared/medicalInstitution';
 export class RegistrationInfo{
-    username: string;
-    password: string;
-    fullName: string;
-    emailAddress: string;
-    contactInfo: string;
-    dateOfBirth: Date;
+    Username: string;
+    Password: string;
+    ConfirmPassword: string;
+    FullName: string;
+    EmailAddress: string;
+    ContactInfo: string;
+    DateOfBirth: Date;
+    LicenceId: string;
+    Institutions: MedicalInstitution[];
 }

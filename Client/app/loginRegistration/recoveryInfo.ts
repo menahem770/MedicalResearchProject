@@ -1,4 +1,4 @@
 export class RecoveryInfo{
-    emailAddress: string;
-    dateOfBirth: Date; 
+    EmailAddress: string;
+    DateOfBirth: Date; 
 }

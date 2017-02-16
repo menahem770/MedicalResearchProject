@@ -10,12 +10,12 @@ namespace MRP.Common.DTO
     {
         public string Username { get; set; }
         public string Password { get; set; }
-        public string Fullname { get; set; }
+        public string FullName { get; set; }
         public string EmailAddress { get; set; }
         public string ContactInfo { get; set; }
         public DateTime DateOfBirth { get; set; }
-        public List<string> Roles { get; set; }
         public string LicenceID { get; set; }
+        public List<string> Roles { get; set; }
         public IEnumerable<MedicalInstitutionDTO> Institutions { get; set; }
     }
 }

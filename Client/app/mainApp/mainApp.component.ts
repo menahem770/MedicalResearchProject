@@ -24,7 +24,7 @@ export class MainAppComponent{
         if(user){
             this.loggedIn = true;
             this.loggedInUser = user;
-            this.loginTitle = 'hello '+user.username;
+            this.loginTitle = 'hello '+user.UserName;
         }
     }
     logout():void{

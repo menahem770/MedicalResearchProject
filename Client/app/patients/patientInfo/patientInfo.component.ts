@@ -20,7 +20,7 @@ export class PatientInfoComponent{
         let id:number = +this.route.snapshot.params['id'];
         if(id == 0){
             this.model = new Patient();
-            this.model.diagnosis = new Array<PatientDiagnosis>();
+            this.model.Diagnosis = new Array<PatientDiagnosis>();
             this.pageTitle = 'Add New Patient';
         }
         else{

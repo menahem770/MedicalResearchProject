@@ -35,7 +35,7 @@ export class LoginRegisterComponent{
             this.activeForm = id;
     }
      
-    submit(): void {
+    onsubmit() {
         if(this.activeForm == 0){
             this._logRegService.loginSubmit(this.logInfo)
                 .subscribe(res => this.saveLoginInfo(res),
@@ -56,7 +56,7 @@ export class LoginRegisterComponent{
     saveLoginInfo(res:Response): void{
         let jRes = res.json();
         let user:User = new User().fromJSON(jRes.user);
-        localStorage.setItem('token', JSON.stringify({ token: jRes.access_token, username: user.username }));
+        localStorage.setItem('token', JSON.stringify({ token: jRes.access_token, username: user.UserName }));
         this._userDataServcie.emitChange(user);
         this._router.navigate(['./findPatient']);
     }

@@ -1,4 +1,4 @@
-export class FindPatientModel{
+export class MedicalInstitution{
     Id:number;
     Name:string;
 }

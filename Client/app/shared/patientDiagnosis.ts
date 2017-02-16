@@ -1,32 +1,32 @@
 export class PatientDiagnosis{
 
-    patientId: number;
-    doctorId: number;
-    doctorName: string;
-    medicalInstitution: string;
-    inPatient: boolean;
-    diagnosisDate: Date;
-    dischargeDate: Date;
-    symptoms: DiagnosisSymptoms;
+    PatientId: number;
+    DoctorId: number;
+    DoctorName: string;
+    MedicalInstitution: string;
+    InPatient: boolean;
+    DiagnosisDate: Date;
+    DischargeDate: Date;
+    Symptoms: DiagnosisSymptoms;
 }
 export class DiagnosisSymptoms{
-    hartRate: number;
-    bloodPressure: string;
-    painfulLimb:SymptomInfo;
-    cough:SymptomInfo;
-    swollenLimb:SymptomInfo;
-    hempotysis:SymptomInfo;
-    dyspnea:SymptomInfo;
-    syncope:SymptomInfo;
-    chestPain:SymptomInfo;
-    fever:SymptomInfo;
-    abnormalPain:SymptomInfo;
-    neurologicalMenifest:SymptomInfo;
-    temperture:SymptomInfo;
-    mentalStatus:SymptomInfo;
+    HartRate: number;
+    BloodPressure: string;
+    PainfulLimb:SymptomInfo;
+    Cough:SymptomInfo;
+    SwollenLimb:SymptomInfo;
+    Hempotysis:SymptomInfo;
+    Dyspnea:SymptomInfo;
+    Syncope:SymptomInfo;
+    ChestPain:SymptomInfo;
+    Fever:SymptomInfo;
+    AbnormalPain:SymptomInfo;
+    NeurologicalMenifest:SymptomInfo;
+    Temperture:SymptomInfo;
+    MentalStatus:SymptomInfo;
 }
 export class SymptomInfo{
-    is:boolean;
-    extraInfo:string;
-    number:number;
+    Is:boolean;
+    ExtraInfo:string;
+    Number:number;
 }
