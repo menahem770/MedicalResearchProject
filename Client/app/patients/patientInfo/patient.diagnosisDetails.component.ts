@@ -11,24 +11,24 @@ import { PatientDiagnosis } from '../../shared/patientDiagnosis';
 })
 export class PatientDiagnosisDetailsComponent{
     disable:string = "";
-    pageTitle: string = 'new Diagnosis for '+this.patient.name;
+    pageTitle: string = 'new Diagnosis for '+this.patient.Name;
     diagnosis: PatientDiagnosis;
     patient: Patient;
 
     constructor(private router:Router,private route:ActivatedRoute,private dataService:ComponentsDataTransferService){
         let id = +this.route.snapshot.params['id'];
         this.patient = this.dataService.queriedPatients[0];
-        if(id >= 0 && this.patient.diagnosis && this.patient.diagnosis.length > id){
-            this.diagnosis = this.patient.diagnosis[id];
-            this.pageTitle = 'Edit Diagnosis for '+this.patient.name;
+        if(id >= 0 && this.patient.Diagnosis && this.patient.Diagnosis.length > id){
+            this.diagnosis = this.patient.Diagnosis[id];
+            this.pageTitle = 'Edit Diagnosis for '+this.patient.Name;
             this.disable = 'disabled';
         }
         else{
             this.diagnosis = new PatientDiagnosis();
-            this.patient.diagnosis.push(this.diagnosis);
+            this.patient.Diagnosis.push(this.diagnosis);
         }
     }
-    onsubmit(): void{
+    onSubmit(): void{
         //TO DO
         //save changes
         this.goBack();

@@ -16,7 +16,7 @@ export class PatientBasicInfoComponent implements OnInit{
     constructor(private router: Router){}
     
     ngOnInit() {
-        if(this.patient.id){
+        if(this.patient.Id){
             this.addOrSave = 'Add New';
         }
         else{

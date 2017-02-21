@@ -1,2 +1,2 @@
-cd C:\Users\mendy\Documents\MRP Project\Client
+cd Client
 npm start

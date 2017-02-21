@@ -1,3 +1,4 @@
+import { PatientsService } from './../patients/shared/patients.service';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginRegistrationService } from '../loginRegistration/loginRegister.service';
@@ -9,7 +10,7 @@ import { User } from './../shared/user';
     moduleId: module.id,
     templateUrl: './mainApp.component.html',
     styleUrls: ['./mainApp.component.css'],
-    providers:[ComponentsDataTransferService]
+    providers:[ComponentsDataTransferService,PatientsService]
 })
 export class MainAppComponent{
     loggedInUser:User;

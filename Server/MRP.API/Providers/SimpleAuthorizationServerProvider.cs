@@ -26,11 +26,11 @@ namespace MRP.API.Providers
                 context.SetError("invalid_grant", "The user name or password is incorrect.");
                 return;
             }
-            context.Response.Body.Position = context.Response.Body.Length;
-            context.Response.Write("}");
-            context.Response.Body.Position = 0;
-            context.Response.Write(@"{""user"": " + JsonConvert.SerializeObject(user) + @",""token"":");
-
+            //context.Response.Body.Position = context.Response.Body.Length;
+            //context.Response.Write("}");
+            //context.Response.Body.Position = 0;
+            //context.Response.Write(@"{""user"": " + JsonConvert.SerializeObject(user) + @",""token"":");
+            //context.OwinContext.Response.Headers.Add("user", new[] { user.Id,user.FullName,user.Username,user.EmailAddress,user.LicenceID });
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);
             identity.AddClaim(new Claim("sub", context.UserName));
             user.Roles.ForEach(r => identity.AddClaim(new Claim("role", r)));

@@ -18,7 +18,7 @@ namespace MRP.DAL.Services
                 {
                     Id = u.Id,
                     Username = u.UserName,
-                    Emailddress = u.Email,
+                    EmailAddress = u.Email,
                     FullName = u.FullName,
                     DateOfBirth = u.DateOfBirth,
                     ContactInfo = u.ContactInfo,
@@ -66,7 +66,7 @@ namespace MRP.DAL.Services
             {
                 Id = u.Id,
                 Username = u.UserName,
-                Emailddress = u.Email,
+                EmailAddress = u.Email,
                 FullName = u.FullName,
                 DateOfBirth = u.DateOfBirth,
                 ContactInfo = u.ContactInfo,

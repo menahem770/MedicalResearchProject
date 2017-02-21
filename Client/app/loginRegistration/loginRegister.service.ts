@@ -18,7 +18,7 @@ export class LoginRegistrationService{
     loginSubmit(logInfo: LoginInfo): Observable<any> { 
         let headers: Headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
         let options: RequestOptions = new RequestOptions({ headers: headers });
-        let body: string = "userName="+logInfo.username+"&password="+logInfo.password+"&grant_type=password";
+        let body: string = "userName="+logInfo.Username+"&password="+logInfo.Password+"&grant_type=password";
         return this._http.post(this._url+"Token",body,options)
             // .map((response: Response) => response.json())
             .catch(this._handleError);
