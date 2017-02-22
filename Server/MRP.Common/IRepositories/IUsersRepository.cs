@@ -10,5 +10,6 @@ namespace MRP.Common.IRepositories
     public interface IUsersRepository
     {
         Task<IEnumerable<UserDTO>> GetAllUsersAsync();
+        Task<UserDTO> GetUserAsync(string username);
     }
 }

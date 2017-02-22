@@ -15,7 +15,7 @@
                         </div>
                         <div class="form-group">
                             <label for="inPatient">In/Out Patient</label>
-                            <input type="checkbox" class="form-control" id="inPatient" [(ngModel)]="diagnosis.inPatient" (ngModelChange)="diagnosis.inPatient = $event" name="inPatient" required>
+                            <input type="checkbox" class="form-control" id="inPatient" [(ngModel)]="diagnosis.inOutPatient" (ngModelChange)="diagnosis.inOutPatient = $event" name="inPatient" required>
                         </div>
                         <div class="form-group">
                             <label for="diagnosisDate">Date of Diagnosis</label>
@@ -28,92 +28,92 @@
                     </div>
                     <div class="panel-heading">
                         <div class="form-group">
-                            <label for="hartRate">Hart Rate</label>
-                            <input type="string" class="form-control" id="hartRate" [(ngModel)]="diagnosis.hartRate" (ngModelChange)="diagnosis.hartRate = $event" name="hartRate" {{disable}}>
+                            <label for="heartRate">Heart Rate</label>
+                            <input type="string" class="form-control" id="heartRate" [(ngModel)]="diagnosis.Symptoms.heartRate" (ngModelChange)="diagnosis.Symptoms.heartRate = $event" name="heartRate" {{disable}}>
                         </div>
                         <div class="form-group">
                             <label for="bloodPressure">Blood Pressure</label>
-                            <input type="number" class="form-control" id="bloodPressure" [(ngModel)]="diagnosis.bloodPressure" (ngModelChange)="diagnosis.bloodPressure = $event" name="bloodPressure" {{disable}}>
+                            <input type="number" class="form-control" id="bloodPressure" [(ngModel)]="diagnosis.Symptoms.bloodPressure" (ngModelChange)="diagnosis.Symptoms.bloodPressure = $event" name="bloodPressure" {{disable}}>
                         </div>
                         <div class="form-group">
                             <label for="painfulLimb">Painful Limb</label>
-                            <input type="checkbox" class="form-control" id="painfulLimb" [(ngModel)]="diagnosis.symptoms.painfulLimb.is" (ngModelChange)="diagnosis.symptoms.painfulLimb.is = $event" name="painfulLimb" required>                        
-                            <label for="painfulLimbExtra" ng-if="diagnosis.symptoms.painfulLimb.is">Extra Info</label>                            
-                            <textarea class="form-control" id="painfulLimbExtra" ng-if="diagnosis.symptoms.painfulLimb.is" [(ngModel)]="diagnosis.symptoms.painfulLimb.extraInfo" (ngModelChange)="diagnosis.symptoms.painfulLimb.extraInfo = $event" name="painfulLimbExtra" required></textarea>
+                            <input type="checkbox" class="form-control" id="painfulLimb" [(ngModel)]="diagnosis.Symptoms.painfulLimb.is" (ngModelChange)="diagnosis.Symptoms.painfulLimb.is = $event" name="painfulLimb" required>                        
+                            <label for="painfulLimbExtra" ng-if="diagnosis.Symptoms.painfulLimb.is">Extra Info</label>                            
+                            <textarea class="form-control" id="painfulLimbExtra" ng-if="diagnosis.Symptoms.painfulLimb.is" [(ngModel)]="diagnosis.Symptoms.painfulLimb.extraInfo" (ngModelChange)="diagnosis.Symptoms.painfulLimb.extraInfo = $event" name="painfulLimbExtra" required></textarea>
                         </div>
                         <div class="form-group">
                             <label for="cough">Cough</label>
-                            <input type="checkbox" class="form-control" id="cough" [(ngModel)]="diagnosis.symptoms.cough.is" (ngModelChange)="diagnosis.symptoms.cough.is = $event" name="cough" required>                        
-                            <label for="coughExtra" ng-if="diagnosis.symptoms.cough.is">Extra Info</label>                            
-                            <textarea class="form-control" id="coughExtra" ng-if="diagnosis.symptoms.cough.is" [(ngModel)]="diagnosis.symptoms.cough.extraInfo" (ngModelChange)="diagnosis.symptoms.cough.extraInfo = $event" name="coughExtra" required></textarea>
+                            <input type="checkbox" class="form-control" id="cough" [(ngModel)]="diagnosis.Symptoms.cough.is" (ngModelChange)="diagnosis.Symptoms.cough.is = $event" name="cough" required>                        
+                            <label for="coughExtra" ng-if="diagnosis.Symptoms.cough.is">Extra Info</label>                            
+                            <textarea class="form-control" id="coughExtra" ng-if="diagnosis.Symptoms.cough.is" [(ngModel)]="diagnosis.Symptoms.cough.extraInfo" (ngModelChange)="diagnosis.Symptoms.cough.extraInfo = $event" name="coughExtra" required></textarea>
                         </div>
                         <div class="form-group">
                             <label for="swollenLimb">Swollen Limb</label>
-                            <input type="checkbox" class="form-control" id="swollenLimb" [(ngModel)]="diagnosis.symptoms.swollenLimb.is" (ngModelChange)="diagnosis.symptoms.swollenLimb.is = $event" name="swollenLimb" required>                        
-                            <label for="swollenLimbExtra" ng-if="diagnosis.symptoms.swollenLimb.is">Extra Info</label>                            
-                            <textarea class="form-control" id="swollenLimbExtra" ng-if="diagnosis.symptoms.swollenLimb.is" [(ngModel)]="diagnosis.symptoms.swollenLimb.extraInfo" (ngModelChange)="diagnosis.symptoms.swollenLimb.extraInfo = $event" name="swollenLimbExtra" required></textarea>
+                            <input type="checkbox" class="form-control" id="swollenLimb" [(ngModel)]="diagnosis.Symptoms.swollenLimb.is" (ngModelChange)="diagnosis.Symptoms.swollenLimb.is = $event" name="swollenLimb" required>                        
+                            <label for="swollenLimbExtra" ng-if="diagnosis.Symptoms.swollenLimb.is">Extra Info</label>                            
+                            <textarea class="form-control" id="swollenLimbExtra" ng-if="diagnosis.Symptoms.swollenLimb.is" [(ngModel)]="diagnosis.Symptoms.swollenLimb.extraInfo" (ngModelChange)="diagnosis.Symptoms.swollenLimb.extraInfo = $event" name="swollenLimbExtra" required></textarea>
                         </div>
                         <div class="form-group">
                             <label for="hempotysis">Hempotysis</label>
-                            <input type="checkbox" class="form-control" id="hempotysis" [(ngModel)]="diagnosis.symptoms.hempotysis.is" (ngModelChange)="diagnosis.symptoms.hempotysis.is = $event" name="hempotysis" required>                        
-                            <label for="hempotysisExtra" ng-if="diagnosis.symptoms.hempotysis.is">Extra Info</label>                            
-                            <textarea class="form-control" id="hempotysisExtra" ng-if="diagnosis.symptoms.hempotysis.is" [(ngModel)]="diagnosis.symptoms.hempotysis.extraInfo" (ngModelChange)="diagnosis.symptoms.hempotysis.extraInfo = $event" name="hempotysisExtra" required></textarea>
+                            <input type="checkbox" class="form-control" id="hempotysis" [(ngModel)]="diagnosis.Symptoms.hempotysis.is" (ngModelChange)="diagnosis.Symptoms.hempotysis.is = $event" name="hempotysis" required>                        
+                            <label for="hempotysisExtra" ng-if="diagnosis.Symptoms.hempotysis.is">Extra Info</label>                            
+                            <textarea class="form-control" id="hempotysisExtra" ng-if="diagnosis.Symptoms.hempotysis.is" [(ngModel)]="diagnosis.Symptoms.hempotysis.extraInfo" (ngModelChange)="diagnosis.Symptoms.hempotysis.extraInfo = $event" name="hempotysisExtra" required></textarea>
                         </div>
                         <div class="form-group">
                             <label for="dyspnea">Dyspnea</label>
-                            <input type="checkbox" class="form-control" id="dyspnea" [(ngModel)]="diagnosis.symptoms.dyspnea.is" (ngModelChange)="diagnosis.symptoms.dyspnea.is = $event" name="dyspnea" required>                        
-                            <label for="dyspneaExtra" ng-if="diagnosis.symptoms.dyspnea.is">Extra Info</label>                            
-                            <textarea class="form-control" id="dyspneaExtra" ng-if="diagnosis.symptoms.dyspnea.is" [(ngModel)]="diagnosis.symptoms.dyspnea.extraInfo" (ngModelChange)="diagnosis.symptoms.dyspnea.extraInfo = $event" name="dyspneaExtra" required></textarea>
+                            <input type="checkbox" class="form-control" id="dyspnea" [(ngModel)]="diagnosis.Symptoms.dyspnea.is" (ngModelChange)="diagnosis.Symptoms.dyspnea.is = $event" name="dyspnea" required>                        
+                            <label for="dyspneaExtra" ng-if="diagnosis.Symptoms.dyspnea.is">Extra Info</label>                            
+                            <textarea class="form-control" id="dyspneaExtra" ng-if="diagnosis.Symptoms.dyspnea.is" [(ngModel)]="diagnosis.Symptoms.dyspnea.extraInfo" (ngModelChange)="diagnosis.Symptoms.dyspnea.extraInfo = $event" name="dyspneaExtra" required></textarea>
                         </div>
                         <div class="form-group">
                             <label for="syncope">Syncope</label>
-                            <input type="checkbox" class="form-control" id="syncope" [(ngModel)]="diagnosis.symptoms.syncope.is" (ngModelChange)="diagnosis.symptoms.syncope.is = $event" name="syncope" required>                        
-                            <label for="syncopeExtra" ng-if="diagnosis.symptoms.syncope.is">Extra Info</label>                            
-                            <textarea class="form-control" id="syncopeExtra" ng-if="diagnosis.symptoms.syncope.is" [(ngModel)]="diagnosis.symptoms.syncope.extraInfo" (ngModelChange)="diagnosis.symptoms.syncope.extraInfo = $event" name="syncopeExtra" required></textarea>
+                            <input type="checkbox" class="form-control" id="syncope" [(ngModel)]="diagnosis.Symptoms.syncope.is" (ngModelChange)="diagnosis.Symptoms.syncope.is = $event" name="syncope" required>                        
+                            <label for="syncopeExtra" ng-if="diagnosis.Symptoms.syncope.is">Extra Info</label>                            
+                            <textarea class="form-control" id="syncopeExtra" ng-if="diagnosis.Symptoms.syncope.is" [(ngModel)]="diagnosis.Symptoms.syncope.extraInfo" (ngModelChange)="diagnosis.Symptoms.syncope.extraInfo = $event" name="syncopeExtra" required></textarea>
                         </div>
                         <div class="form-group">
                             <label for="chestPain">Chest Pain</label>
-                            <input type="checkbox" class="form-control" id="chestPain" [(ngModel)]="diagnosis.symptoms.chestPain.is" (ngModelChange)="diagnosis.symptoms.chestPain.is = $event" name="chestPain" required>                        
-                            <label for="chestPainExtra" ng-if="diagnosis.symptoms.chestPain.is">Extra Info</label>                            
-                            <textarea class="form-control" id="chestPainExtra" ng-if="diagnosis.symptoms.chestPain.is" [(ngModel)]="diagnosis.symptoms.chestPain.extraInfo" (ngModelChange)="diagnosis.symptoms.chestPain.extraInfo = $event" name="chestPainExtra" required></textarea>
+                            <input type="checkbox" class="form-control" id="chestPain" [(ngModel)]="diagnosis.Symptoms.chestPain.is" (ngModelChange)="diagnosis.Symptoms.chestPain.is = $event" name="chestPain" required>                        
+                            <label for="chestPainExtra" ng-if="diagnosis.Symptoms.chestPain.is">Extra Info</label>                            
+                            <textarea class="form-control" id="chestPainExtra" ng-if="diagnosis.Symptoms.chestPain.is" [(ngModel)]="diagnosis.Symptoms.chestPain.extraInfo" (ngModelChange)="diagnosis.Symptoms.chestPain.extraInfo = $event" name="chestPainExtra" required></textarea>
                         </div>
                         <div class="form-group">
                             <label for="fever">Fever</label>
-                            <input type="checkbox" class="form-control" id="fever" [(ngModel)]="diagnosis.symptoms.fever.is" (ngModelChange)="diagnosis.symptoms.fever.is = $event" name="fever" required>                        
-                            <label for="feverNum" ng-if="diagnosis.symptoms.fever.is">Value</label>
-                            <input type="number" class="form-control" id="feverNum" ng-if="diagnosis.symptoms.fever.is" [(ngModel)]="diagnosis.symptoms.fever.number" (ngModelChange)="diagnosis.symptoms.fever.number = $event" name="feverNum">
-                            <label for="feverExtra" ng-if="diagnosis.symptoms.fever.is">Extra Info</label>                            
-                            <textarea class="form-control" id="feverExtra" ng-if="diagnosis.symptoms.fever.is" [(ngModel)]="diagnosis.symptoms.fever.extraInfo" (ngModelChange)="diagnosis.symptoms.fever.extraInfo = $event" name="feverExtra" required></textarea>
+                            <input type="checkbox" class="form-control" id="fever" [(ngModel)]="diagnosis.Symptoms.fever.is" (ngModelChange)="diagnosis.Symptoms.fever.is = $event" name="fever" required>                        
+                            <label for="feverNum" ng-if="diagnosis.Symptoms.fever.is">Value</label>
+                            <input type="number" class="form-control" id="feverNum" ng-if="diagnosis.Symptoms.fever.is" [(ngModel)]="diagnosis.Symptoms.fever.Value" (ngModelChange)="diagnosis.Symptoms.fever.Value = $event" name="feverNum">
+                            <label for="feverExtra" ng-if="diagnosis.Symptoms.fever.is">Extra Info</label>                            
+                            <textarea class="form-control" id="feverExtra" ng-if="diagnosis.Symptoms.fever.is" [(ngModel)]="diagnosis.Symptoms.fever.extraInfo" (ngModelChange)="diagnosis.Symptoms.fever.extraInfo = $event" name="feverExtra" required></textarea>
                         </div>
                         <div class="form-group">
                             <label for="abnormalPain">Abnormal Pain</label>
-                            <input type="checkbox" class="form-control" id="abnormalPain" [(ngModel)]="diagnosis.symptoms.abnormalPain.is" (ngModelChange)="diagnosis.symptoms.abnormalPain.is = $event" name="abnormalPain" required>                        
-                            <label for="abnormalPainExtra" ng-if="diagnosis.symptoms.abnormalPain.is">Extra Info</label>                            
-                            <textarea class="form-control" id="abnormalPainExtra" ng-if="diagnosis.symptoms.abnormalPain.is" [(ngModel)]="diagnosis.symptoms.abnormalPain.extraInfo" (ngModelChange)="diagnosis.symptoms.abnormalPain.extraInfo = $event" name="abnormalPainExtra" required></textarea>
+                            <input type="checkbox" class="form-control" id="abnormalPain" [(ngModel)]="diagnosis.Symptoms.abnormalPain.is" (ngModelChange)="diagnosis.Symptoms.abnormalPain.is = $event" name="abnormalPain" required>                        
+                            <label for="abnormalPainExtra" ng-if="diagnosis.Symptoms.abnormalPain.is">Extra Info</label>                            
+                            <textarea class="form-control" id="abnormalPainExtra" ng-if="diagnosis.Symptoms.abnormalPain.is" [(ngModel)]="diagnosis.Symptoms.abnormalPain.extraInfo" (ngModelChange)="diagnosis.Symptoms.abnormalPain.extraInfo = $event" name="abnormalPainExtra" required></textarea>
                         </div>
                         <div class="form-group">
                             <label for="neurologicalMenifest">Neurological Menifest</label>
-                            <input type="checkbox" class="form-control" id="neurologicalMenifest" [(ngModel)]="diagnosis.symptoms.neurologicalMenifest.is" (ngModelChange)="diagnosis.symptoms.neurologicalMenifest.is = $event" name="neurologicalMenifest" required>                        
-                            <label for="neurologicalMenifestExtra" ng-if="diagnosis.symptoms.neurologicalMenifest.is">Extra Info</label>                            
-                            <textarea class="form-control" id="neurologicalMenifestExtra" ng-if="diagnosis.symptoms.neurologicalMenifest.is" [(ngModel)]="diagnosis.symptoms.neurologicalMenifest.extraInfo" (ngModelChange)="diagnosis.symptoms.neurologicalMenifest.extraInfo = $event" name="neurologicalMenifestExtra" required></textarea>
+                            <input type="checkbox" class="form-control" id="neurologicalMenifest" [(ngModel)]="diagnosis.Symptoms.neurologicalMenifest.is" (ngModelChange)="diagnosis.Symptoms.neurologicalMenifest.is = $event" name="neurologicalMenifest" required>                        
+                            <label for="neurologicalMenifestExtra" ng-if="diagnosis.Symptoms.neurologicalMenifest.is">Extra Info</label>                            
+                            <textarea class="form-control" id="neurologicalMenifestExtra" ng-if="diagnosis.Symptoms.neurologicalMenifest.is" [(ngModel)]="diagnosis.Symptoms.neurologicalMenifest.extraInfo" (ngModelChange)="diagnosis.Symptoms.neurologicalMenifest.extraInfo = $event" name="neurologicalMenifestExtra" required></textarea>
                         </div>
                         <div class="form-group">
                             <label for="temperture">Body Temperture</label>
-                            <input type="checkbox" class="form-control" id="temperture" [(ngModel)]="diagnosis.symptoms.temperture.is" (ngModelChange)="diagnosis.symptoms.temperture.is = $event" name="temperture" required>
-                            <label for="tempertureNum" ng-if="diagnosis.symptoms.temperture.is">Value</label>
-                            <input type="number" class="form-control" id="tempertureNum" ng-if="diagnosis.symptoms.temperture.is" [(ngModel)]="diagnosis.symptoms.temperture.number" (ngModelChange)="diagnosis.symptoms.temperture.number = $event" name="tempertureNum">                       
-                            <label for="tempertureExtra" ng-if="diagnosis.symptoms.temperture.is">Extra Info</label>                            
-                            <textarea class="form-control" id="tempertureExtra" ng-if="diagnosis.symptoms.temperture.is" [(ngModel)]="diagnosis.symptoms.temperture.extraInfo" (ngModelChange)="diagnosis.symptoms.temperture.extraInfo = $event" name="tempertureExtra" required></textarea>
+                            <input type="checkbox" class="form-control" id="temperture" [(ngModel)]="diagnosis.Symptoms.temperture.is" (ngModelChange)="diagnosis.Symptoms.temperture.is = $event" name="temperture" required>
+                            <label for="tempertureNum" ng-if="diagnosis.Symptoms.temperture.is">Value</label>
+                            <input type="number" class="form-control" id="tempertureNum" ng-if="diagnosis.Symptoms.temperture.is" [(ngModel)]="diagnosis.Symptoms.temperture.Value" (ngModelChange)="diagnosis.Symptoms.temperture.Value = $event" name="tempertureNum">                       
+                            <label for="tempertureExtra" ng-if="diagnosis.Symptoms.temperture.is">Extra Info</label>                            
+                            <textarea class="form-control" id="tempertureExtra" ng-if="diagnosis.Symptoms.temperture.is" [(ngModel)]="diagnosis.Symptoms.temperture.extraInfo" (ngModelChange)="diagnosis.Symptoms.temperture.extraInfo = $event" name="tempertureExtra" required></textarea>
                         </div>
                         <div class="form-group">
                             <label for="mentalStatus">Mental Status</label>
-                            <input type="checkbox" class="form-control" id="mentalStatus" [(ngModel)]="diagnosis.symptoms.mentalStatus.is" (ngModelChange)="diagnosis.symptoms.mentalStatus.is = $event" name="mentalStatus" required>                        
-                            <label for="mentalStatusExtra" ng-if="diagnosis.symptoms.mentalStatus.is">Extra Info</label>                            
-                            <textarea class="form-control" id="mentalStatusExtra" ng-if="diagnosis.symptoms.mentalStatus.is" [(ngModel)]="diagnosis.symptoms.mentalStatus.extraInfo" (ngModelChange)="diagnosis.symptoms.mentalStatus.extraInfo = $event" name="mentalStatusExtra" required></textarea>
+                            <input type="checkbox" class="form-control" id="mentalStatus" [(ngModel)]="diagnosis.Symptoms.mentalStatus.is" (ngModelChange)="diagnosis.Symptoms.mentalStatus.is = $event" name="mentalStatus" required>                        
+                            <label for="mentalStatusExtra" ng-if="diagnosis.Symptoms.mentalStatus.is">Extra Info</label>                            
+                            <textarea class="form-control" id="mentalStatusExtra" ng-if="diagnosis.Symptoms.mentalStatus.is" [(ngModel)]="diagnosis.Symptoms.mentalStatus.extraInfo" (ngModelChange)="diagnosis.Symptoms.mentalStatus.extraInfo = $event" name="mentalStatusExtra" required></textarea>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Save</button>
-                    <button type="button" class="btn btn-primary" (click)='goBack'>Cancel</button>
+                    <button type="submit" class="btn btn-primary" (click)='submit()'>Save</button>
+                    <button type="button" class="btn btn-primary" (click)='goBack()'>Cancel</button>
                 </form>
             </div>
         </div>

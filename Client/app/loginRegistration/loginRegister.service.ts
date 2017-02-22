@@ -20,19 +20,28 @@ export class LoginRegistrationService{
         let options: RequestOptions = new RequestOptions({ headers: headers });
         let body: string = "userName="+logInfo.Username+"&password="+logInfo.Password+"&grant_type=password";
         return this._http.post(this._url+"Token",body,options)
-            // .map((response: Response) => response.json())
+            .map((response: Response) => response.json())
             .catch(this._handleError);
     }
 
-    registrationSubmit(regInfo: RegistrationInfo): any {
+    registrationSubmit(regInfo: RegistrationInfo){
         return this._http.post(this._url+"api/Account/Register",regInfo)
             .map((response: Response) => response.json)
             .catch(this._handleError);
     }
 
-    recoverySubmit(recInfo: RecoveryInfo): any {
+    recoverySubmit(recInfo: RecoveryInfo){
         return this._http.post(this._url+"/passwordRecovery",recInfo)
-            .map((response: Response) => response.blob)
+            .map((response: Response) => response.json)
+            .catch(this._handleError);
+    }
+
+    getLoggedUser(username: string){
+        let accessToken:string = JSON.parse(localStorage.getItem('token')).token;
+        let headers: Headers = new Headers({'Authorization':'Bearer '+accessToken});
+        let options: RequestOptions = new RequestOptions({ headers: headers ,});
+        return this._http.get(this._url+"api/Account/GetUser?username="+username,options)
+            .map((response: Response) => response.json)
             .catch(this._handleError);
     }
 

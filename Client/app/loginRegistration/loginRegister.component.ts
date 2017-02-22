@@ -53,14 +53,12 @@ export class LoginRegisterComponent{
         }
     }
 
-    saveLoginInfo(res:Response): void{
-        let jRes = res.json();
-        //let user:User = new User().fromJSON(jRes.user);
-        localStorage.setItem('token', JSON.stringify({ token: jRes.access_token}));//, username: user.UserName }));
-        let u = new User();
-        u.UserName = this.logInfo.Username;
-        this._userDataServcie.emitChange(u);
+    saveLoginInfo(res:any): void{
+        let user:User;
+        this._logRegService.getLoggedUser(res.access_token,this.logInfo.Username)
+           .subscribe(u => user = new User().fromJSON(u),(error:any) => this.errorMsg = <any>error);
+        localStorage.setItem('token', JSON.stringify({ token: res.access_token, username: user.UserName }));
+        this._userDataServcie.emitChange(user);
         this._router.navigate(['./findPatient']);
     }
-        
 }

@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System;
 using System.Configuration;
+using System.Linq;
 
 namespace MRP.DAL.Repositories
 {
@@ -38,6 +39,12 @@ namespace MRP.DAL.Repositories
         {
             var collection = await _database.GetCollection<User>("AspNetUsers").Find(u => u.Id != null).ToListAsync();
             return collection.ConvertToDTOExtension();
+        }
+
+        public async Task<UserDTO> GetUserAsync(string username)
+        {
+            var collection = await _database.GetCollection<User>("AspNetUsers").Find(u => u.UserName == username).ToListAsync();
+            return collection.ConvertToDTOExtension().ToList()[0];
         }
     }
 }

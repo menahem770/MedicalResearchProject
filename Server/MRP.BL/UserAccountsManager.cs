@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 
 namespace MRP.BL
 {
-    public class AuthManager
+    public class UserAccountsManager
     {
         IAuthRpository authRep;
         IUsersRepository userRep;
-        public AuthManager(IAuthRpository ar,IUsersRepository ur)
+        public UserAccountsManager(IAuthRpository ar,IUsersRepository ur)
         {
             authRep = ar;
             userRep = ur;
         }
-        public AuthManager()
+        public UserAccountsManager()
         {
             authRep = new AuthRepository();
             userRep = new UsersRepository();
@@ -37,6 +37,11 @@ namespace MRP.BL
         public Task<IEnumerable<UserDTO>> GetAllUsersAsync()
         {
             return userRep.GetAllUsersAsync();
+        }
+
+        public Task<UserDTO> GetUserAsync(string username)
+        {
+            return userRep.GetUserAsync(username);
         }
 
 

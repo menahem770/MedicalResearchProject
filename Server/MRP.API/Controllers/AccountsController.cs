@@ -8,17 +8,16 @@ using System.Web.Http;
 
 namespace MRP.API.Controllers
 {
-    [RoutePrefix("api/Account")]
-    public class AccountController : ApiController
+    [RoutePrefix("api/Account"),Authorize]
+    public class AccountsController : ApiController
     {
-        private AuthManager _manager;
+        private UserAccountsManager _manager;
 
-        public AccountController()
+        public AccountsController()
         {
-            _manager = new AuthManager();
+            _manager = new UserAccountsManager();
         }
 
-        // POST api/Account/Register
         [AllowAnonymous]
         [Route("Register")]
         public async Task<IHttpActionResult> Register([FromBody]RegistrationInfo info)
@@ -40,9 +39,16 @@ namespace MRP.API.Controllers
             return Created<UserDTO>("",null);
         }
 
+        [Route("GetAllUsers")]
         public Task<IEnumerable<UserDTO>> GetAllUsersAsync()
         {
             return _manager.GetAllUsersAsync();
+        }
+
+        [Route("GetUser")]
+        public Task<UserDTO> GetUserAsync([FromUri]string username)
+        {
+            return _manager.GetUserAsync(username);
         }
 
         private IHttpActionResult GetErrorResult(IdentityResult result)

@@ -46,11 +46,14 @@
   <ItemGroup>
     <Compile Include="DTO\AuthLevel.cs" />
     <Compile Include="DTO\EditUserInfo.cs" />
+    <Compile Include="DTO\FindPatientModel.cs" />
+    <Compile Include="DTO\Gender.cs" />
     <Compile Include="DTO\LoginInfo.cs" />
     <Compile Include="DTO\MedicalInstitutionDTO.cs" />
     <Compile Include="DTO\PatientDTO.cs" />
     <Compile Include="DTO\PatientQuery.cs" />
     <Compile Include="DTO\PasswordRecoveryResponse.cs" />
+    <Compile Include="DTO\Race.cs" />
     <Compile Include="DTO\RegistrationErrorType.cs" />
     <Compile Include="DTO\RegistrationResponse.cs" />
     <Compile Include="DTO\UserDTO.cs" />

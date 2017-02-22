@@ -19,12 +19,13 @@ export class FindPatientComponent{
     }
 
     find():void{
-        this.patientsService.getPatients(this.patient,JSON.parse(localStorage.getItem('token')).token)
+        this.patientsService.getPatients(this.patient)
             .subscribe(patients => {
                 this.dataService.queriedPatients = patients;
                 this.router.navigate(['./'+this.navigationAddress(patients)])
             });
     }
+    
     private navigationAddress(patients:Patient[]):string{
         if(patients.length > 1)
             return 'patientList';

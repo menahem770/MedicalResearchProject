@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace MRP.Common.DTO
 {
-    public enum AuthLevel
+    public enum Race
     {
-        DR,
-        MR,
-        MRA,
-        Admin,
-        System,
+        Caucasian,
+        Black,
+        Latino,
+        Asian,
+        Other
     }
 }

@@ -4,14 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MRP.Common.DTO
+namespace MRP.BL
 {
-    public enum AuthLevel
+    public class PatientsManager
     {
-        DR,
-        MR,
-        MRA,
-        Admin,
-        System,
+
     }
 }

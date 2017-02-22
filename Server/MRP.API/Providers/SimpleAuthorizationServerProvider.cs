@@ -19,7 +19,7 @@ namespace MRP.API.Providers
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
             context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
-            AuthManager _manager = new AuthManager();
+            UserAccountsManager _manager = new UserAccountsManager();
             UserDTO user = await _manager.Login(context.UserName, context.Password);
             if (user == null)
             {

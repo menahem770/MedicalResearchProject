@@ -1,16 +1,17 @@
+import { MedicalInstitution } from './medicalInstitution';
 export class PatientDiagnosis{
 
     PatientId: number;
     DoctorId: number;
     DoctorName: string;
-    MedicalInstitution: string;
-    InPatient: boolean;
+    MedicalInstitution: MedicalInstitution;
+    InOutPatient: boolean;
     DiagnosisDate: Date;
     DischargeDate: Date;
     Symptoms: DiagnosisSymptoms;
 }
 export class DiagnosisSymptoms{
-    HartRate: number;
+    HeartRate: number;
     BloodPressure: string;
     PainfulLimb:SymptomInfo;
     Cough:SymptomInfo;
@@ -28,5 +29,5 @@ export class DiagnosisSymptoms{
 export class SymptomInfo{
     Is:boolean;
     ExtraInfo:string;
-    Number:number;
+    Value:number;
 }

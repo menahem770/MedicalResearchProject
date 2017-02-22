@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 
 namespace MRP.Common.DTO
 {
-    public enum AuthLevel
+    public class FindPatientModel
     {
-        DR,
-        MR,
-        MRA,
-        Admin,
-        System,
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 }

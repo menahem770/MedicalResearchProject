@@ -1,3 +1,4 @@
+import { PatientsService } from './../shared/patients.service';
 import { Component,Input,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Patient,Gender,Race } from '../../shared/patient';
@@ -11,24 +12,28 @@ export class PatientBasicInfoComponent implements OnInit{
     @Input() patient:Patient;
     races:string[] = Object.keys(Race).map(k => Race[k]).filter(v => typeof v === "string") as string[];
     gender:string[] = Object.keys(Gender).map(k => Gender[k]);
+    formType:string;
     addOrSave:string = "";
 
-    constructor(private router: Router){}
+    constructor(private router:Router, private patientService:PatientsService){}
     
     ngOnInit() {
         if(this.patient.Id){
+            this.formType = "A";
             this.addOrSave = 'Add New';
         }
         else{
+            this.formType = "E";
             this.addOrSave = 'Save Changes';
         }
     }
     addDiagnosis(): void{
         this.router.navigate(['./patientDiagnosisDetails/-1']);
     }
-    onsubmit(): void{
-        //create or edit patient
-        //add patient to dataservice
-        //maybe after creation, stay to add diagnosis
+    submit(): void{
+        if(this.formType == "A")
+            this.patientService.addPatient(this.patient);
+        else
+            this.patientService.editPatient(this.patient);
     }
 }
