@@ -18,10 +18,10 @@ namespace MRP.DAL.Repositories
         MongoClient _client;
         IMongoDatabase _database;
         IMongoCollection<User> _users;
-        //IMongoCollection<IdentityRole> _roles;
         UserStore<User> _store;
-        //RoleStore<IdentityRole> _roleStore;
         UserManager<User> _userManager;
+        //IMongoCollection<IdentityRole> _roles;
+        //RoleStore<IdentityRole> _roleStore;
 
 
         public UsersRepository()

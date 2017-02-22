@@ -21,18 +21,9 @@ namespace MRP.API.Controllers
         }
 
         [Route("GetPatients")]
-        public async Task<IEnumerable<PatientDTO>> GetPatients([FromBody]FindPatientModel model)
+        public Task<IEnumerable<PatientDTO>> GetPatients([FromBody]FindPatientModel model)
         {
-            IdentityResult result = await _manager.CreateAsync(info);
-
-            IHttpActionResult errorResult = GetErrorResult(result);
-
-            if (errorResult != null)
-            {
-                return errorResult;
-            }
-
-            return Created<UserDTO>("", null);
+            return _manager.GetPatients(model);
         }
 
         // GET: api/Patient/5

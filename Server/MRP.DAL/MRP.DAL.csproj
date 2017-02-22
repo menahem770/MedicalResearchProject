@@ -70,7 +70,7 @@
     <Compile Include="Models\ErrorType.cs" />
     <Compile Include="Models\MedicalInstitution.cs" />
     <Compile Include="Models\PatientDiagnosis.cs" />
-    <Compile Include="Models\SymptomInfo.cs" />
+    <Compile Include="Repositories\PatientsRepository.cs" />
     <Compile Include="Repositories\UsersRepository.cs" />
     <Compile Include="Services\Extentions.cs" />
     <Compile Include="Repositories\AuthRepository.cs" />
