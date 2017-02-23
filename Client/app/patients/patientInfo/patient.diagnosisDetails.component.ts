@@ -1,5 +1,5 @@
-import { PatientsService } from './../shared/patients.service';
-import { ComponentsDataTransferService } from './../../shared/componentsDataTransfer.service';
+import { PatientsService } from '../../shared/services/patients.service';
+import { ComponentsDataTransferService } from '../../shared/services/componentsDataTransfer.service';
 import { Component,Input } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
 import { Patient } from '../../shared/patient';

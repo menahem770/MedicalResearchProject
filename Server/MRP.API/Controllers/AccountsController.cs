@@ -1,14 +1,16 @@
 ﻿using Microsoft.AspNet.Identity;
 using MRP.API.Models;
+using MRP.API.Providers;
 using MRP.BL;
 using MRP.Common.DTO;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Results;
 
 namespace MRP.API.Controllers
 {
-    [RoutePrefix("api/Account"),Authorize]
+    [RoutePrefix("api/Accounts"), Authorize]
     public class AccountsController : ApiController
     {
         private UserAccountsManager _manager;
@@ -40,15 +42,25 @@ namespace MRP.API.Controllers
         }
 
         [Route("GetAllUsers")]
-        public Task<IEnumerable<UserDTO>> GetAllUsersAsync()
+        public async Task<JsonResult<IEnumerable<UserDTO>>> GetAllUsersAsync()
         {
-            return _manager.GetAllUsersAsync();
+            IEnumerable<UserDTO> users = await _manager.GetAllUsersAsync();
+            return Json(users);
         }
 
         [Route("GetUser")]
-        public Task<UserDTO> GetUserAsync([FromUri]string username)
+        public async Task<JsonResult<UserDTO>> GetUserAsync([FromUri]string username)
         {
-            return _manager.GetUserAsync(username);
+            UserDTO user = await _manager.GetUserAsync(username);
+            return Json(user);
+        }
+
+        [Route("GetUserByToken")]
+        public async Task<JsonResult<UserDTO>> GetUserByTokenAsync([FromBody]string token)
+        {
+            string un = RequestContext.Principal.Identity.GetUserName();
+            UserDTO user = await _manager.GetUserAsync(un);
+            return Json(user);
         }
 
         private IHttpActionResult GetErrorResult(IdentityResult result)

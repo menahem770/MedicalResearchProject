@@ -54,7 +54,7 @@ namespace MRP.DAL.Repositories
                 await _database.GetCollection<Patient>("Patients").InsertOneAsync(patient.ConvertToModel());
                 return true;
             }
-            catch (Exception) { return false; }
+            catch (Exception ex) { throw ex; }
         }
 
         public async Task<bool> EditPatientInfo(PatientDTO patient)

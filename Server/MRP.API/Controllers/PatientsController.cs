@@ -7,6 +7,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Results;
 
 namespace MRP.API.Controllers
 {
@@ -20,31 +21,37 @@ namespace MRP.API.Controllers
             _manager = new PatientsManager();
         }
 
-        [Route("GetPatients")]
-        public Task<IEnumerable<PatientDTO>> GetPatients([FromBody]FindPatientModel model)
+        [Route("GetPatients"),HttpPost]
+        public async Task<JsonResult<IEnumerable<PatientDTO>>> GetPatients([FromBody]FindPatientModel model)
         {
-            return _manager.GetPatients(model);
+            IEnumerable<PatientDTO> patients = await _manager.GetPatients(model);
+            return Json(patients);
         }
 
-        // GET: api/Patient/5
-        public string Get(int id)
+        [Route("AddPatient")]
+        public async Task<IHttpActionResult> AddPatient([FromBody]PatientDTO patient)
         {
-            return "value";
+            try
+            {
+                await _manager.AddPateint(patient);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return new BadRequestErrorMessageResult(ex.Message,null);
+            }
         }
 
-        // POST: api/Patient
-        public void Post([FromBody]string value)
+        [Route("AddDiagnosis")]
+        public async Task<IHttpActionResult> AddDiagnosis([FromBody]PatientDiagnosisDTO diagnosis)
         {
+            return await _manager.AddDiagnosis(diagnosis) ? Created<PatientDiagnosisDTO>("", null) : (IHttpActionResult)InternalServerError();
         }
 
-        // PUT: api/Patient/5
-        public void Put(int id, [FromBody]string value)
+        [Route("EditPatient")]
+        public async Task<IHttpActionResult> EditPatient([FromBody]PatientDTO patient)
         {
-        }
-
-        // DELETE: api/Patient/5
-        public void Delete(int id)
-        {
+            return await _manager.EditPatient(patient) ? Created<PatientDTO>("", null) : (IHttpActionResult)InternalServerError();
         }
     }
 }

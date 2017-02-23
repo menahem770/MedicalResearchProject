@@ -2,6 +2,8 @@
 using Microsoft.Owin.Cors;
 using Microsoft.Owin.Security.OAuth;
 using MRP.API.Providers;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using Owin;
 using System;
 using System.Web.Http;
@@ -27,7 +29,7 @@ namespace MRP.API
             OAuthAuthorizationServerOptions OAuthServerOptions = new OAuthAuthorizationServerOptions()
             {
                 AllowInsecureHttp = true,
-                TokenEndpointPath = new PathString("/token"),
+                TokenEndpointPath = new PathString("/api/Accounts/Token"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
                 Provider = new SimpleAuthorizationServerProvider()
             };

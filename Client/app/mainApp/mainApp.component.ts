@@ -1,8 +1,8 @@
-import { PatientsService } from './../patients/shared/patients.service';
+import { PatientsService } from '../shared/services/patients.service';
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { LoginRegistrationService } from '../loginRegistration/loginRegister.service';
-import { ComponentsDataTransferService } from './../shared/componentsDataTransfer.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { UsersService } from '../shared/services/users.service';
+import { ComponentsDataTransferService } from '../shared/services/componentsDataTransfer.service';
 import { User } from './../shared/user';
 
 @Component({
@@ -10,7 +10,7 @@ import { User } from './../shared/user';
     moduleId: module.id,
     templateUrl: './mainApp.component.html',
     styleUrls: ['./mainApp.component.css'],
-    providers:[ComponentsDataTransferService,PatientsService]
+    providers:[ComponentsDataTransferService,PatientsService,UsersService]
 })
 export class MainAppComponent{
     loggedInUser:User;
@@ -18,7 +18,15 @@ export class MainAppComponent{
     loginTitle:string;
     loggedIn:boolean = false;
 
-    constructor(private userDataServcie:ComponentsDataTransferService, private router:Router){
+    constructor(private userDataServcie:ComponentsDataTransferService,
+                private router:Router,
+                private usersService:UsersService,
+                private route:ActivatedRoute){
+        if(!this.loggedInUser && localStorage.getItem("token")){
+            let un = JSON.parse(localStorage.getItem('token')).username;
+            this.usersService.getLoggedUser(un)
+                .subscribe(res => this.userDataServcie.emitChange(new User().fromJSON(res)));
+        }
         this.userDataServcie.changeEmitted$.subscribe(user => this.login(user));
     }
     login(user:User):void{
@@ -30,7 +38,7 @@ export class MainAppComponent{
     }
     logout():void{
         this.loggedIn = false;
-        LoginRegistrationService.prototype.logout();
+        UsersService.prototype.logout();
         this.router.navigate(['/login']);
     }
 }

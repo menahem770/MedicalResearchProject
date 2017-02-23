@@ -1,4 +1,4 @@
-import { ComponentsDataTransferService } from './../../shared/componentsDataTransfer.service';
+import { ComponentsDataTransferService } from '../../shared/services/componentsDataTransfer.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component } from '@angular/core';
 import { Patient } from '../../shared/patient';

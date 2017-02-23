@@ -17,7 +17,7 @@ import { TabsComponent } from './shared/tabs/tabs.component';
 import { DataFilterPipe } from './shared/dataFilter.pipe';
 import { PatientDiagnosisDetailsComponent } from './patients/patientInfo/patient.diagnosisDetails.component';
 import { FindPatientComponent } from './patients/findPatient/findPatient.component';
-import { CanActivateOAuthGuard } from './shared/canActivateOAuthGuard';
+import { CanActivateOAuthGuard } from './shared/services/canActivateOAuthGuard';
 
 @NgModule({
   imports:      [ BrowserModule,

@@ -3,15 +3,15 @@ import {Http,Response,RequestOptions,Headers} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import { CONFIG } from './../shared/config';
-import { User } from './../shared/user';
-import { LoginInfo } from './loginInfo';
-import { RegistrationInfo } from './registrationInfo';
-import { RecoveryInfo } from './recoveryInfo';
+import { CONFIG } from '../config';
+import { User } from '../user';
+import { LoginInfo } from '../../loginRegistration/shared/loginInfo';
+import { RegistrationInfo } from '../../loginRegistration/shared/registrationInfo';
+import { RecoveryInfo } from '../../loginRegistration/shared/recoveryInfo';
 
 @Injectable()
-export class LoginRegistrationService{
-    private _url: string = CONFIG.apiUrl;
+export class UsersService{
+    private _url: string = CONFIG.apiUrl+"api/Accounts";
     
     constructor(private _http: Http){ }
 
@@ -19,20 +19,20 @@ export class LoginRegistrationService{
         let headers: Headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
         let options: RequestOptions = new RequestOptions({ headers: headers });
         let body: string = "userName="+logInfo.Username+"&password="+logInfo.Password+"&grant_type=password";
-        return this._http.post(this._url+"Token",body,options)
+        return this._http.post(this._url+"/Token",body,options)
             .map((response: Response) => response.json())
             .catch(this._handleError);
     }
 
     registrationSubmit(regInfo: RegistrationInfo){
-        return this._http.post(this._url+"api/Account/Register",regInfo)
-            .map((response: Response) => response.json)
+        return this._http.post(this._url+"/Register",regInfo)
+            .map((response: Response) => response.json())
             .catch(this._handleError);
     }
 
     recoverySubmit(recInfo: RecoveryInfo){
-        return this._http.post(this._url+"/passwordRecovery",recInfo)
-            .map((response: Response) => response.json)
+        return this._http.post(this._url+"/PasswordRecovery",recInfo)
+            .map((response: Response) => response.json())
             .catch(this._handleError);
     }
 
@@ -40,10 +40,20 @@ export class LoginRegistrationService{
         let accessToken:string = JSON.parse(localStorage.getItem('token')).token;
         let headers: Headers = new Headers({'Authorization':'Bearer '+accessToken});
         let options: RequestOptions = new RequestOptions({ headers: headers ,});
-        return this._http.get(this._url+"api/Account/GetUser?username="+username,options)
-            .map((response: Response) => response.json)
+        return this._http.get(this._url+"/GetUser?username="+username,options)
+            .map((response: Response) => response.json())
             .catch(this._handleError);
     }
+
+    // getLoggedUserByToken(){
+    //     let accessToken:string = JSON.parse(localStorage.getItem('token')).token;
+    //     let headers: Headers = new Headers({'Authorization':'Bearer '+accessToken});
+    //     let options: RequestOptions = new RequestOptions({ headers: headers ,});
+    //     let body: Object = JSON.parse("token:"+accessToken);
+    //     return this._http.post(this._url+"/GetUserByToken",body,options)
+    //         .map((response: Response) => response.json())
+    //         .catch(this._handleError);
+    // }
 
     logout(): void {
         localStorage.removeItem('token');

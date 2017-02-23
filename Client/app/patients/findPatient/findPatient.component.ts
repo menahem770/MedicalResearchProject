@@ -1,8 +1,8 @@
 import { Patient } from './../../shared/patient';
-import { ComponentsDataTransferService } from './../../shared/componentsDataTransfer.service';
+import { ComponentsDataTransferService } from '../../shared/services/componentsDataTransfer.service';
 import { Router } from '@angular/router';
 import { User } from './../../shared/user';
-import { PatientsService } from './../shared/patients.service';
+import { PatientsService } from '../../shared/services/patients.service';
 import { FindPatientModel } from './findPatientModel';
 import { Component, Input } from '@angular/core';
 

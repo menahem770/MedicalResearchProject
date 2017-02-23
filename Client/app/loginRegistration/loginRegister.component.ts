@@ -1,20 +1,18 @@
-import { Serializable } from './../shared/serializable';
 import { Response } from '@angular/http';
 import { Component,Input,Output,EventEmitter } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
-import { RegistrationInfo } from './registrationInfo';
-import { LoginInfo } from './loginInfo';
-import { RecoveryInfo } from './recoveryInfo';
-import { LoginRegistrationService } from './loginRegister.service';
-import { ComponentsDataTransferService } from './../shared/componentsDataTransfer.service';
+import { RegistrationInfo } from './shared/registrationInfo';
+import { LoginInfo } from './shared/loginInfo';
+import { RecoveryInfo } from './shared/recoveryInfo';
+import { UsersService } from '../shared/services/users.service';
+import { ComponentsDataTransferService } from '../shared/services/componentsDataTransfer.service';
 import { User } from './../shared/user';
 
 @Component({
     selector: 'mrp-loginRegister',
     moduleId: module.id,
     templateUrl: './loginRegister.component.html',
-    styleUrls: ['./loginRegister.component.css'],
-    providers:[LoginRegistrationService]
+    styleUrls: ['./loginRegister.component.css']
 })
 export class LoginRegisterComponent{
     pageTitle: string = 'Login Page';
@@ -25,7 +23,7 @@ export class LoginRegisterComponent{
     recInfo: RecoveryInfo = new RecoveryInfo();
 
     constructor(
-            private _logRegService:LoginRegistrationService,
+            private _logRegService:UsersService,
             private _route:ActivatedRoute,
             private _router:Router,
             private _userDataServcie:ComponentsDataTransferService){
@@ -54,11 +52,10 @@ export class LoginRegisterComponent{
     }
 
     saveLoginInfo(res:any): void{
-        let user:User;
-        this._logRegService.getLoggedUser(res.access_token,this.logInfo.Username)
-           .subscribe(u => user = new User().fromJSON(u),(error:any) => this.errorMsg = <any>error);
-        localStorage.setItem('token', JSON.stringify({ token: res.access_token, username: user.UserName }));
-        this._userDataServcie.emitChange(user);
+        localStorage.setItem('token', JSON.stringify({ token: res.access_token, username: this.logInfo.Username }));
+        this._logRegService.getLoggedUser(this.logInfo.Username)
+           .subscribe(u => this._userDataServcie.emitChange(new User().fromJSON(u)),
+           (error:any) => this.errorMsg = <any>error);
         this._router.navigate(['./findPatient']);
     }
 }

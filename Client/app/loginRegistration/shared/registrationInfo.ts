@@ -1,4 +1,4 @@
-import { MedicalInstitution } from './../shared/medicalInstitution';
+import { MedicalInstitution } from '../../shared/medicalInstitution';
 export class RegistrationInfo{
     Username: string;
     Password: string;

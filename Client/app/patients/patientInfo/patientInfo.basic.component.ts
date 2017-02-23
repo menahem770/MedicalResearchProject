@@ -1,4 +1,6 @@
-import { PatientsService } from './../shared/patients.service';
+import { ComponentsDataTransferService } from './../../shared/services/componentsDataTransfer.service';
+import { Response } from '@angular/http';
+import { PatientsService } from '../../shared/services/patients.service';
 import { Component,Input,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Patient,Gender,Race } from '../../shared/patient';
@@ -14,11 +16,12 @@ export class PatientBasicInfoComponent implements OnInit{
     gender:string[] = Object.keys(Gender).map(k => Gender[k]);
     formType:string;
     addOrSave:string = "";
+    error:string;
 
-    constructor(private router:Router, private patientService:PatientsService){}
+    constructor(private router:Router, private patientService:PatientsService, private dataService:ComponentsDataTransferService){}
     
     ngOnInit() {
-        if(this.patient.Id){
+        if(!this.patient.Id){
             this.formType = "A";
             this.addOrSave = 'Add New';
         }
@@ -32,8 +35,13 @@ export class PatientBasicInfoComponent implements OnInit{
     }
     submit(): void{
         if(this.formType == "A")
-            this.patientService.addPatient(this.patient);
+            this.patientService.addPatient(this.patient)
+                .subscribe((res:Response) => {
+                        this.dataService.queriedPatients = [this.patient];
+                        this.router.navigate(['./patientInfo/1']);
+                    }, (error:any) => this.error = "Server Error, Patient wasn't saved!");
         else
-            this.patientService.editPatient(this.patient);
+            this.patientService.editPatient(this.patient)
+                .subscribe((error:any) => this.error = "Server Error, changes weren't saved!");
     }
 }
