@@ -37,7 +37,7 @@ export class UsersService{
     }
 
     getLoggedUser(username: string){
-        let accessToken:string = JSON.parse(localStorage.getItem('token')).token;
+        let accessToken:string = JSON.parse(sessionStorage.getItem('token')).token;
         let headers: Headers = new Headers({'Authorization':'Bearer '+accessToken});
         let options: RequestOptions = new RequestOptions({ headers: headers ,});
         return this._http.get(this._url+"/GetUser?username="+username,options)
@@ -46,7 +46,7 @@ export class UsersService{
     }
 
     // getLoggedUserByToken(){
-    //     let accessToken:string = JSON.parse(localStorage.getItem('token')).token;
+    //     let accessToken:string = JSON.parse(sessionStorage.getItem('token')).token;
     //     let headers: Headers = new Headers({'Authorization':'Bearer '+accessToken});
     //     let options: RequestOptions = new RequestOptions({ headers: headers ,});
     //     let body: Object = JSON.parse("token:"+accessToken);
@@ -56,7 +56,7 @@ export class UsersService{
     // }
 
     logout(): void {
-        localStorage.removeItem('token');
+        sessionStorage.removeItem('token');
     }
     
     private _handleError(error: Response) {

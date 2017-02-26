@@ -13,7 +13,7 @@ export class PatientsService{
     constructor(private _http: Http){}
 
     getPatients(findPatientModel:FindPatientModel):Observable<Patient[]>{
-        let accessToken:string = JSON.parse(localStorage.getItem('token')).token;
+        let accessToken:string = JSON.parse(sessionStorage.getItem('token')).token;
         let headers: Headers = new Headers({'Authorization':'Bearer '+accessToken});
         let options: RequestOptions = new RequestOptions({headers: headers});
         return this._http.post(this._url+"/GetPatients",findPatientModel,options)
@@ -22,7 +22,7 @@ export class PatientsService{
     }
 
     addPatient(patient:Patient):any{
-        let accessToken:string = JSON.parse(localStorage.getItem('token')).token;
+        let accessToken:string = JSON.parse(sessionStorage.getItem('token')).token;
         let headers: Headers = new Headers({'Authorization':'Bearer '+accessToken});
         let options: RequestOptions = new RequestOptions({headers: headers});
         return this._http.post(this._url+"/AddPatient",patient,options)
@@ -30,18 +30,18 @@ export class PatientsService{
             .catch(this._handleError);
     }
 
-    AddDiagnosis(patientId:number,diagnosis:PatientDiagnosis):any{
-        let accessToken:string = JSON.parse(localStorage.getItem('token')).token;
+    AddDiagnosis(diagnosis:PatientDiagnosis):any{
+        let accessToken:string = JSON.parse(sessionStorage.getItem('token')).token;
         let headers: Headers = new Headers({'Authorization':'Bearer '+accessToken});
         let options: RequestOptions = new RequestOptions({headers: headers});
-        diagnosis.PatientId = patientId;
+        //diagnosis.PatientId = patientId;
         return this._http.put(this._url+"/AddDiagnosis",diagnosis,options)
             .map((response: Response) => response.json())
             .catch(this._handleError);
     }
 
     editPatient(patient:Patient):any{
-        let accessToken:string = JSON.parse(localStorage.getItem('token')).token;
+        let accessToken:string = JSON.parse(sessionStorage.getItem('token')).token;
         let headers: Headers = new Headers({'Authorization':'Bearer '+accessToken});
         let options: RequestOptions = new RequestOptions({headers: headers});
         return this._http.put(this._url+"/EditPatient",patient,options)

@@ -18,6 +18,7 @@ import { DataFilterPipe } from './shared/dataFilter.pipe';
 import { PatientDiagnosisDetailsComponent } from './patients/patientInfo/patient.diagnosisDetails.component';
 import { FindPatientComponent } from './patients/findPatient/findPatient.component';
 import { CanActivateOAuthGuard } from './shared/services/canActivateOAuthGuard';
+import { SymptomsTabComponent } from './patients/patientInfo/symptomsTab.component';
 
 @NgModule({
   imports:      [ BrowserModule,
@@ -47,7 +48,8 @@ import { CanActivateOAuthGuard } from './shared/services/canActivateOAuthGuard';
                   FindPatientComponent,
                   TabComponent,
                   TabsComponent,
-                  DataFilterPipe 
+                  DataFilterPipe,
+                  SymptomsTabComponent
                 ],
   providers:    [CanActivateOAuthGuard],
   bootstrap:    [ AppComponent ]

@@ -52,7 +52,7 @@ export class LoginRegisterComponent{
     }
 
     saveLoginInfo(res:any): void{
-        localStorage.setItem('token', JSON.stringify({ token: res.access_token, username: this.logInfo.Username }));
+        sessionStorage.setItem('token', JSON.stringify({ token: res.access_token, username: this.logInfo.Username }));
         this._logRegService.getLoggedUser(this.logInfo.Username)
            .subscribe(u => this._userDataServcie.emitChange(new User().fromJSON(u)),
            (error:any) => this.errorMsg = <any>error);

@@ -22,8 +22,8 @@ export class MainAppComponent{
                 private router:Router,
                 private usersService:UsersService,
                 private route:ActivatedRoute){
-        if(!this.loggedInUser && localStorage.getItem("token")){
-            let un = JSON.parse(localStorage.getItem('token')).username;
+        if(!this.loggedInUser && sessionStorage.getItem("token")){
+            let un = JSON.parse(sessionStorage.getItem('token')).username;
             this.usersService.getLoggedUser(un)
                 .subscribe(res => this.userDataServcie.emitChange(new User().fromJSON(res)));
         }

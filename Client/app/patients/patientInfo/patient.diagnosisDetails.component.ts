@@ -1,3 +1,4 @@
+import { SymptomsTabComponent } from './symptomsTab.component';
 import { PatientsService } from '../../shared/services/patients.service';
 import { ComponentsDataTransferService } from '../../shared/services/componentsDataTransfer.service';
 import { Component,Input } from '@angular/core';
@@ -15,6 +16,7 @@ export class PatientDiagnosisDetailsComponent{
     pageTitle: string = 'new Diagnosis for '+this.patient.Name;
     diagnosis: PatientDiagnosis;
     patient: Patient;
+    symptompsTabs:SymptomsTabComponent[];
 
     constructor(private router:Router,private route:ActivatedRoute,private dataService:ComponentsDataTransferService, private patientsService:PatientsService){
         let id = +this.route.snapshot.params['id'];
@@ -31,7 +33,8 @@ export class PatientDiagnosisDetailsComponent{
         }
     }
     submit(): void{
-        this.patientsService.AddDiagnosis(this.patient,this.diagnosis);
+        this.diagnosis.PatientId = this.patient.Id;
+        this.patientsService.AddDiagnosis(this.diagnosis);
         this.goBack();
     }
     goBack(): void{

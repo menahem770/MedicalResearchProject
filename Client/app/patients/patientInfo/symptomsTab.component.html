@@ -1,0 +1,9 @@
+<h3>{{tabTitle}}</h3>
+<div class="form-group" *ngFor="let field of tabFields;let i=index">
+        <label for="field.title.is.id">{{field.title.is}}</label>
+        <input type="checkbox" class="form-control" id="{{field.title.is.id}}" [(ngModel)]="field.title.is.value" (ngModelChange)="field.title.is.value = $event" name="field.title.is.id" required>                        
+        <label for="value" ng-if="diagnosis.Symptoms.fever.is">Value</label>
+        <input type="number" class="form-control" id="feverNum" ng-if="diagnosis.Symptoms.fever.is" [(ngModel)]="diagnosis.Symptoms.fever.Value" (ngModelChange)="diagnosis.Symptoms.fever.Value = $event" name="feverNum">
+        <label for="feverExtra" ng-if="diagnosis.Symptoms.fever.is">Extra Info</label>                            
+        <textarea class="form-control" id="feverExtra" ng-if="diagnosis.Symptoms.fever.is" [(ngModel)]="diagnosis.Symptoms.fever.extraInfo" (ngModelChange)="diagnosis.Symptoms.fever.extraInfo = $event" name="feverExtra" required></textarea>
+    </div>
