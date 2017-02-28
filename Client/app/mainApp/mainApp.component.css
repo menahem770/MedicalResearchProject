@@ -4,14 +4,41 @@ html, body, material-app, md-sidenav-container, .my-content {
   height: 100%;
 }
 .glyphicon-menu-hamburger {
-  font-size: npx;
+  font-size: 25px;
+  margin: 8px;
 }
-li a{
-  cursor: pointer;
+li button{
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 4px;
 }
-.logo{
-  padding: 0;
+.navbar-brand {
+  padding: 0px;
 }
-.logo img{
-  height: 50px;
+a.navbar-brand{
+  padding-top: 16px;
+}
+.navbar-brand>img {
+  height: 100%;
+  padding: 3px;
+  width: auto;
+}
+.brand-centered {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+.brand-centered .navbar-brand {
+  display: flex;
+  align-items: center;
+}
+.navbar-toggle {
+    z-index: 1;
+}
+.footer{
+  position:absolute;
+  bottom:0;
 }

@@ -1,23 +1,35 @@
 <div>
-    <nav class='navbar navbar-default'>
-        <div class='container-fluid'>
-            <div class="navbar-header">
-                <a class="navbar-brand" *ngIf='loggedIn' (click)="start.open()">
-                    <span class="glyphicon glyphicon-menu-hamburger"></span>
-                </a>
-                <a class="navbar-brand logo" href=""><img src="app/assets/research_logo.png" alt="Medical Research Project"></a>
-            </div>
-            <div id="navbar1" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li *ngIf='loggedIn'><a>{{loginTitle}}</a></li>
-                    <li *ngIf='loggedIn'><a (click)='logout()'>logout?</a></li>
-                </ul>
-            </div>
-            
-            <!--<a class='navbar-brand'>{{pageTitle}}</a>-->
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar9">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
         </div>
-    </nav>
-    <md-sidenav-container>
+        <div class="brand-centered">
+            <a class="navbar-brand"><img style="margin-right: 10px; padding: 0;" src="app/assets/research_logo.png"></a>
+        </div>
+      
+        <div id="navbar9" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-left">
+                <li class="active">
+                    <button class="navbar-brand" *ngIf='loggedIn' (click)="start.open()">
+                        <span class="glyphicon glyphicon-menu-hamburger"></span>
+                    </button>
+                </li>
+                <li><a class="navbar-brand">{{pageTitle}}</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="active" *ngIf='loggedIn'><a>{{loginTitle}}</a></li>
+                <li *ngIf='loggedIn'><a (click)='logout()'>logout</a></li>
+            </ul>
+        </div>
+    </div>
+  </nav>
+  <md-sidenav-container>
         <md-sidenav #start mode='push' (open)="sidenavlist.focus()">
             <ul class='list-group' #sidenavlist>
                 <li class="list-group-item"><a [routerLink]="['/research']" (click)='start.close()'>Research</a></li>
@@ -27,16 +39,16 @@
                 <li class="list-group-item"><a [routerLink]="['/userManagment']" (click)='start.close()'>User Managment</a></li>
             </ul>
         </md-sidenav>
-    </md-sidenav-container>
-    <div class='container my-content'>
-        <router-outlet></router-outlet>
-    </div>
-    <footer class="footer">
-        <div class='container'>
-            <ul class="nav navbar-nav ">
-                <li><a class="navbar-brand logo"><img src="app/assets/sela_logo.jpg" alt="Medical Research Project"></a></li>
-                <li><a class="navbar-brand logo"><img src="app/assets/shiba_logo.jpg" alt="Medical Research Project"></a></li>
-            </ul>
+        <div class='container my-content'>
+            <router-outlet></router-outlet>
         </div>
-    </footer>
+        <footer class="footer">
+            <div class='container'>
+                <ul class="nav navbar-nav ">
+                    <li><a class="navbar-brand logo"><img src="app/assets/sela_logo.jpg" alt="Medical Research Project"></a></li>
+                    <li><a class="navbar-brand logo"><img src="app/assets/shiba_logo.jpg" alt="Medical Research Project"></a></li>
+                </ul>
+            </div>
+        </footer>
+    </md-sidenav-container>
 </div>

@@ -20,6 +20,7 @@ import { PatientDiagnosisDetailsComponent } from './patients/patientInfo/patient
 import { FindPatientComponent } from './patients/findPatient/findPatient.component';
 import { CanActivateOAuthGuard } from './shared/services/canActivateOAuthGuard';
 import { SymptomsTabComponent } from './patients/patientInfo/symptomsTab.component';
+//import { UnderConstructionComponent } from './shared/metronic/underConstruction.component';
 
 @NgModule({
   imports:      [ BrowserModule,
@@ -35,6 +36,9 @@ import { SymptomsTabComponent } from './patients/patientInfo/symptomsTab.compone
                     {path: 'patientInfo/:id', component: PatientInfoComponent, canActivate : [CanActivateOAuthGuard]},
                     {path: 'patientDiagnosisDetails/:id', component: PatientDiagnosisDetailsComponent, canActivate : [CanActivateOAuthGuard]},
                     {path: 'findPatient', component: FindPatientComponent, canActivate : [CanActivateOAuthGuard]},
+                    // {path: 'userManagment', component: UnderConstructionComponent, canActivate : [CanActivateOAuthGuard]},
+                    // {path: 'research', component: UnderConstructionComponent, canActivate : [CanActivateOAuthGuard]},
+                    // {path: 'personalInfo', component: UnderConstructionComponent, canActivate : [CanActivateOAuthGuard]},
                     {path: '', redirectTo: 'login', pathMatch:'full'},
                     {path: '**', redirectTo: 'login', pathMatch:'full'}
                   ])
@@ -52,6 +56,7 @@ import { SymptomsTabComponent } from './patients/patientInfo/symptomsTab.compone
                   TabsComponent,
                   DataFilterPipe,
                   SymptomsTabComponent
+                  //UnderConstructionComponent
                 ],
   providers:    [CanActivateOAuthGuard],
   bootstrap:    [ AppComponent ]
