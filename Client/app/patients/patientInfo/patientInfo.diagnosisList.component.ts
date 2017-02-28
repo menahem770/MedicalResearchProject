@@ -22,8 +22,8 @@ export class PatientInfoDiagnosisListComponent implements OnInit{
     constructor(private router:Router){}
 
     ngOnInit() {
-        this.data = this.patient.diagnosis;
-        this.showDiagnosis = this.patient.diagnosis && this.patient.diagnosis.length > 0;
+        this.data = this.patient.Diagnosis;
+        this.showDiagnosis = this.patient.Diagnosis && this.patient.Diagnosis.length > 0;
     }
 
     openDetails(diagnosisNum:number):void{

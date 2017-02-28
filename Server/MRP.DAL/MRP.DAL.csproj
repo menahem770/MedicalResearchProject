@@ -66,8 +66,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\DiagnosisSymptoms.cs" />
-    <Compile Include="Models\ErrorEntry.cs" />
-    <Compile Include="Models\ErrorType.cs" />
     <Compile Include="Models\MedicalInstitution.cs" />
     <Compile Include="Models\PatientDiagnosis.cs" />
     <Compile Include="Repositories\PatientsRepository.cs" />

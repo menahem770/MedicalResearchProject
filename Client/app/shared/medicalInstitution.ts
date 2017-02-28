@@ -1,4 +1,4 @@
 export class MedicalInstitution{
-    Id:number;
+    Id:string;
     Name:string;
 }

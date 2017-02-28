@@ -9,7 +9,8 @@ import { CONFIG } from '../../shared/config';
 @Injectable()
 export class PatientsService{
     private _url: string = CONFIG.apiUrl+"api/Patients";
-    
+    public queriedPatients:Patient[];
+
     constructor(private _http: Http){}
 
     getPatients(findPatientModel:FindPatientModel):Observable<Patient[]>{
@@ -17,7 +18,7 @@ export class PatientsService{
         let headers: Headers = new Headers({'Authorization':'Bearer '+accessToken});
         let options: RequestOptions = new RequestOptions({headers: headers});
         return this._http.post(this._url+"/GetPatients",findPatientModel,options)
-            .map((response: Response) => <Patient[]>response.json())
+            .map((response: Response) => { this.queriedPatients = <Patient[]>response.json().data || new Array<Patient>(); this.queriedPatients  })
             .catch(this._handleError);
     }
 
@@ -26,7 +27,7 @@ export class PatientsService{
         let headers: Headers = new Headers({'Authorization':'Bearer '+accessToken});
         let options: RequestOptions = new RequestOptions({headers: headers});
         return this._http.post(this._url+"/AddPatient",patient,options)
-            .map((response: Response) => response.json())
+            .map((response: Response) => response.json().data || {})
             .catch(this._handleError);
     }
 
@@ -36,7 +37,7 @@ export class PatientsService{
         let options: RequestOptions = new RequestOptions({headers: headers});
         //diagnosis.PatientId = patientId;
         return this._http.put(this._url+"/AddDiagnosis",diagnosis,options)
-            .map((response: Response) => response.json())
+            .map((response: Response) => response.json().data || {})
             .catch(this._handleError);
     }
 
@@ -45,7 +46,7 @@ export class PatientsService{
         let headers: Headers = new Headers({'Authorization':'Bearer '+accessToken});
         let options: RequestOptions = new RequestOptions({headers: headers});
         return this._http.put(this._url+"/EditPatient",patient,options)
-            .map((response: Response) => response.json())
+            .map((response: Response) => response.json().data || {})
             .catch(this._handleError);
     }
 

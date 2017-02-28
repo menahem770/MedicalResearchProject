@@ -1,12 +1,12 @@
 import { MedicalInstitution } from './medicalInstitution';
 
 export class User{
-    UserID: number;
+    Id:string;
+    UserId: number;
     UserName: string;
     FullName: string;
     EmailAddress: string;
     ContactInfo: string;
-    AuthLevel: AuthLevel;
     DateOfBirth: Date;
     LicenceId: string;
     Rolse: string[];
@@ -17,11 +17,4 @@ export class User{
             this[propName] = json[propName];
         return this;
     }
-}
-
-export enum AuthLevel{
-    MR,
-    MRA,
-    Admin,
-    System
 }

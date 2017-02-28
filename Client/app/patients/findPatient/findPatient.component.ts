@@ -1,10 +1,11 @@
-import { Patient } from './../../shared/patient';
-import { ComponentsDataTransferService } from '../../shared/services/componentsDataTransfer.service';
 import { Router } from '@angular/router';
+import { Component, Input } from '@angular/core';
+
+import { UsersService } from './../../shared/services/users.service';
+import { Patient } from './../../shared/patient';
 import { User } from './../../shared/user';
 import { PatientsService } from '../../shared/services/patients.service';
 import { FindPatientModel } from './findPatientModel';
-import { Component, Input } from '@angular/core';
 
 @Component({
     moduleId:module.id,
@@ -13,15 +14,16 @@ import { Component, Input } from '@angular/core';
 export class FindPatientComponent{
     patient:FindPatientModel = new FindPatientModel();
     loggedInUser:User;
+    pageTitle:string = "Find Patient";
     
-    constructor(private patientsService:PatientsService, private router:Router,private dataService:ComponentsDataTransferService){
+    constructor(private patientsService:PatientsService, private router:Router,private dataService:UsersService){
         this.dataService.changeEmitted$.subscribe(user => this.loggedInUser = <User>user);
     }
 
     find():void{
         this.patientsService.getPatients(this.patient)
             .subscribe(patients => {
-                this.dataService.queriedPatients = patients;
+                this.patientsService.queriedPatients = patients;
                 this.router.navigate(['./'+this.navigationAddress(patients)])
             });
     }

@@ -29,10 +29,10 @@
 										<label for="password">Password:</label>
 										<input type="password" name="password" id="password" [(ngModel)]="logInfo.Password" tabindex="2" class="form-control" placeholder="Password">
 									</div>
-									<div class="form-group text-center">
+									<!--<div class="form-group text-center">
 										<input type="checkbox" tabindex="3" class="" name="remember" id="remember">
 										<label for="remember"> Remember Me</label>
-									</div>
+									</div>-->
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
@@ -65,12 +65,13 @@
 										</div>
 										<div class="form-group" [ngClass]="{'has-error': passwordVar.touched && !passwordVar.valid}">
 											<label for="password" class="control-label">Password:</label>
-											<input type="password" name="password" id="password" #passwordVar='ngModel' [(ngModel)]="regInfo.Password" tabindex="3" class="form-control" placeholder="Password (required)" required minlength="6">
+											<input type="password" name="password" id="password" #passwordVar='ngModel' [(ngModel)]="regInfo.Password" tabindex="3" class="form-control" placeholder="Password (required)" required minlength="6" validateEqual="confirm-password" reverse="true">
 											<span class='help-block'  *ngIf='(passwordVar.touched || passwordVar.dirty) && passwordVar.errors'>Please enter a password, at least 6 charecters in length</span>
 										</div>
 										<div class="form-group" [ngClass]="{'has-error': confirmPasswordVar.touched && !confirmPasswordVar.valid}">
 											<label for="confirm-password" class="control-label">Confirm Password:</label>
-											<input type="password" name="confirm-password" id="confirm-password" #confirmPasswordVar='ngModel' [(ngModel)]="regInfo.ConfirmPassword" tabindex="4" class="form-control" placeholder="Confirm Password (required)" required minlength="6">
+											<input type="password" name="confirm-password" id="confirm-password" #confirmPasswordVar='ngModel' [(ngModel)]="passwordConfirm" tabindex="4" class="form-control" 
+												placeholder="Confirm Password (required)" required minlength="6" validateEqual="password" reverse="false">
 											<span class='help-block'  *ngIf='(confirmPasswordVar.touched || confirmPasswordVar.dirty) && confirmPasswordVar.errors'>Please confirm password, passwords must match!</span>
 										</div>
 										<div class="form-group" [ngClass]="{'has-error': nameVar.touched && !nameVar.valid}">

@@ -99,6 +99,7 @@ namespace MRP.DAL.Services
             return new UserDTO
             {
                 Id = u.Id,
+                UserId = u.UserId
                 UserName = u.UserName,
                 EmailAddress = u.Email,
                 FullName = u.FullName,
@@ -118,6 +119,7 @@ namespace MRP.DAL.Services
             return new PatientDTO
             {
                 Id = p.Id,
+                PatientId = p.PatientId,
                 Name = p.Name,
                 DateOfBirth = p.DateOfBirth,
                 Gender = p.Gender,
@@ -135,6 +137,7 @@ namespace MRP.DAL.Services
         {
             return new PatientDiagnosisDTO
             {
+                Id = d.Id,
                 PatientId = d.PatientId,
                 DoctorId = d.DoctorId,
                 DoctorName = d.DoctorName,
@@ -162,6 +165,7 @@ namespace MRP.DAL.Services
             return new Patient
             {
                 Id = p.Id,
+                PatientId = p.PatientId,
                 Name = p.Name,
                 DateOfBirth = p.DateOfBirth,
                 Gender = p.Gender,
@@ -179,6 +183,7 @@ namespace MRP.DAL.Services
         {
             return new PatientDiagnosis
             {
+                Id = d.Id,
                 PatientId = d.PatientId,
                 DoctorId = d.DoctorId,
                 DoctorName = d.DoctorName,

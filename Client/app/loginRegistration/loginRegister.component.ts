@@ -1,11 +1,11 @@
 import { Response } from '@angular/http';
 import { Component,Input,Output,EventEmitter } from '@angular/core';
 import { Router,ActivatedRoute } from '@angular/router';
+import { AbstractControl } from '@angular/forms';
 import { RegistrationInfo } from './shared/registrationInfo';
 import { LoginInfo } from './shared/loginInfo';
 import { RecoveryInfo } from './shared/recoveryInfo';
 import { UsersService } from '../shared/services/users.service';
-import { ComponentsDataTransferService } from '../shared/services/componentsDataTransfer.service';
 import { User } from './../shared/user';
 
 @Component({
@@ -23,11 +23,10 @@ export class LoginRegisterComponent{
     recInfo: RecoveryInfo = new RecoveryInfo();
 
     constructor(
-            private _logRegService:UsersService,
+            private _usersService:UsersService,
             private _route:ActivatedRoute,
-            private _router:Router,
-            private _userDataServcie:ComponentsDataTransferService){
-        this._userDataServcie.emitChange(null);
+            private _router:Router){
+        this._usersService.emitChange(null);
         let id = +this._route.snapshot.params['form'];
         if(id >= 0 && id < 3)
             this.activeForm = id;
@@ -35,17 +34,17 @@ export class LoginRegisterComponent{
      
     submit() {
         if(this.activeForm == 0){
-            this._logRegService.loginSubmit(this.logInfo)
+            this._usersService.loginSubmit(this.logInfo)
                 .subscribe(res => this.saveLoginInfo(res),
                         error => this.errorMsg = <any>error);
         }
         else if(this.activeForm == 1){
-            this._logRegService.registrationSubmit(this.regInfo)
+            this._usersService.registrationSubmit(this.regInfo)
                 .subscribe((res:any) => <boolean>res ? this.activeForm = 0 : this.errorMsg = 'Registration Failed',
                         (error:any) => this.errorMsg = <any>error);
         }
         else{
-            this._logRegService.recoverySubmit(this.recInfo)
+            this._usersService.recoverySubmit(this.recInfo)
                 .subscribe((res:any) => <boolean>res ? this.errorMsg = 'a temperary password has been sent to your email' : this.errorMsg = 'Recovery Failed', 
                         (error:any) => this.errorMsg = <any>error);
         }
@@ -53,8 +52,8 @@ export class LoginRegisterComponent{
 
     saveLoginInfo(res:any): void{
         sessionStorage.setItem('token', JSON.stringify({ token: res.access_token, username: this.logInfo.Username }));
-        this._logRegService.getLoggedUser(this.logInfo.Username)
-           .subscribe(u => this._userDataServcie.emitChange(new User().fromJSON(u)),
+        this._usersService.getLoggedUser(this.logInfo.Username)
+           .subscribe(u => this._usersService.emitChange(new User().fromJSON(u)),
            (error:any) => this.errorMsg = <any>error);
         this._router.navigate(['./findPatient']);
     }

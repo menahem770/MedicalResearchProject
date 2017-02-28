@@ -5,10 +5,11 @@
             <div class="row">
                 <div class="col-lg-12">
                     <form>
-                        <tab *ngFor="let tab of symptompsTabs;let i=index" tabTitle="'Symptoms tab '+ i">
+                        <tab [tabTitle]="'Symptoms tab A'">
                             <mrp-symptoms-tab [patient]='patient' *ngIf="patient">
                             </mrp-symptoms-tab>
                         </tab>
+                        
                         <button type="submit" class="btn btn-primary" (click)='submit()'>Save</button>
                         <button type="button" class="btn btn-primary" (click)='goBack()'>Cancel</button>
                     </form>

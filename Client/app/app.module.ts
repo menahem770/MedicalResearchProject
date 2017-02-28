@@ -9,6 +9,7 @@ import { DataTableModule } from 'angular2-datatable';
 import { AppComponent }  from './app.component';
 import { MainAppComponent } from './mainApp/mainApp.component';
 import { LoginRegisterComponent } from './loginRegistration/loginRegister.component';
+import { EqualValidator } from './loginRegistration/shared/equalValidator.directive';
 import { PatientInfoComponent } from './patients/patientInfo/patientInfo.component';
 import { PatientBasicInfoComponent } from './patients/patientInfo/patientInfo.basic.component';
 import { PatientInfoDiagnosisListComponent } from './patients/patientInfo/patientInfo.diagnosisList.component';
@@ -41,6 +42,7 @@ import { SymptomsTabComponent } from './patients/patientInfo/symptomsTab.compone
   declarations: [ AppComponent,
                   MainAppComponent,
                   LoginRegisterComponent,
+                  EqualValidator,
                   PatientInfoComponent,
                   PatientBasicInfoComponent,
                   PatientInfoDiagnosisListComponent,

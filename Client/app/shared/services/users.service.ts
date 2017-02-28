@@ -1,8 +1,10 @@
+import { Subject } from 'rxjs/Subject';
 import {Injectable} from '@angular/core';
 import {Http,Response,RequestOptions,Headers} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+
 import { CONFIG } from '../config';
 import { User } from '../user';
 import { LoginInfo } from '../../loginRegistration/shared/loginInfo';
@@ -12,6 +14,13 @@ import { RecoveryInfo } from '../../loginRegistration/shared/recoveryInfo';
 @Injectable()
 export class UsersService{
     private _url: string = CONFIG.apiUrl+"api/Accounts";
+    private emitChangeSource = new Subject<User>();
+    // Observable string streams
+    changeEmitted$ = this.emitChangeSource.asObservable();
+    // Service message commands
+    emitChange(change: User) {
+        this.emitChangeSource.next(change);
+    }
     
     constructor(private _http: Http){ }
 
@@ -44,16 +53,6 @@ export class UsersService{
             .map((response: Response) => response.json())
             .catch(this._handleError);
     }
-
-    // getLoggedUserByToken(){
-    //     let accessToken:string = JSON.parse(sessionStorage.getItem('token')).token;
-    //     let headers: Headers = new Headers({'Authorization':'Bearer '+accessToken});
-    //     let options: RequestOptions = new RequestOptions({ headers: headers ,});
-    //     let body: Object = JSON.parse("token:"+accessToken);
-    //     return this._http.post(this._url+"/GetUserByToken",body,options)
-    //         .map((response: Response) => response.json())
-    //         .catch(this._handleError);
-    // }
 
     logout(): void {
         sessionStorage.removeItem('token');

@@ -84,9 +84,9 @@ namespace MRP.DAL.Repositories
         public async Task<IEnumerable<PatientDTO>> GetPatients(FindPatientModel model)
         {
             List<Patient> collection;
-            if (model.Id != 0)
+            if (model.PatientId != 0)
             {
-                collection = await _database.GetCollection<Patient>("Patients").Find(p => p.Id == model.Id).ToListAsync();
+                collection = await _database.GetCollection<Patient>("Patients").Find(p => p.Id == model.PatientId).ToListAsync();
                 return collection.ConvertToDTOExtension().ToList();
             }
             collection = await _database.GetCollection<Patient>("Patients").Find(p => p.Name == model.Name).ToListAsync();

@@ -1,7 +1,7 @@
 import { PatientDiagnosis } from './patientDiagnosis'
 export class Patient{
-
-    Id: number;
+    Id: string;
+    PatientId:number;
     Name: string;
     DateOfBirth: Date;
     Gender: Gender;

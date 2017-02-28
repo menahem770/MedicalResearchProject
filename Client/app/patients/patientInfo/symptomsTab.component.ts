@@ -8,4 +8,5 @@ import { Component, Input } from '@angular/core';
 })
 export class SymptomsTabComponent{
     @Input() patient:Patient;
+    @Input() tabTitle:string;
 }

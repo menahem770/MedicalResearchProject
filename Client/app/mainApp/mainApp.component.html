@@ -1,14 +1,20 @@
 <div>
     <nav class='navbar navbar-default'>
         <div class='container-fluid'>
-            <a class="navbar-brand" *ngIf='loggedIn' (click)="start.open()">
-                <span class="glyphicon glyphicon-menu-hamburger"></span>
-            </a>
-            <a class='navbar-brand'>{{pageTitle}}</a>
-            <ul class='nav navbar-nav'>
-                <li *ngIf='loggedIn'><a>{{loginTitle}}</a></li>
-                <li *ngIf='loggedIn'><a (click)='logout()'>logout?</a></li>
-            </ul>
+            <div class="navbar-header">
+                <a class="navbar-brand" *ngIf='loggedIn' (click)="start.open()">
+                    <span class="glyphicon glyphicon-menu-hamburger"></span>
+                </a>
+                <a class="navbar-brand logo" href=""><img src="app/assets/research_logo.png" alt="Medical Research Project"></a>
+            </div>
+            <div id="navbar1" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li *ngIf='loggedIn'><a>{{loginTitle}}</a></li>
+                    <li *ngIf='loggedIn'><a (click)='logout()'>logout?</a></li>
+                </ul>
+            </div>
+            
+            <!--<a class='navbar-brand'>{{pageTitle}}</a>-->
         </div>
     </nav>
     <md-sidenav-container>
@@ -21,8 +27,16 @@
                 <li class="list-group-item"><a [routerLink]="['/userManagment']" (click)='start.close()'>User Managment</a></li>
             </ul>
         </md-sidenav>
-        <div class='container my-content'>
-            <router-outlet></router-outlet>
-        </div>
     </md-sidenav-container>
+    <div class='container my-content'>
+        <router-outlet></router-outlet>
+    </div>
+    <footer class="footer">
+        <div class='container'>
+            <ul class="nav navbar-nav ">
+                <li><a class="navbar-brand logo"><img src="app/assets/sela_logo.jpg" alt="Medical Research Project"></a></li>
+                <li><a class="navbar-brand logo"><img src="app/assets/shiba_logo.jpg" alt="Medical Research Project"></a></li>
+            </ul>
+        </div>
+    </footer>
 </div>

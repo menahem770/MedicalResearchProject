@@ -1,8 +1,7 @@
-import { ComponentsDataTransferService } from './../../shared/services/componentsDataTransfer.service';
-import { Response } from '@angular/http';
-import { PatientsService } from '../../shared/services/patients.service';
 import { Component,Input,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Response } from '@angular/http';
+import { PatientsService } from '../../shared/services/patients.service';
 import { Patient,Gender,Race } from '../../shared/patient';
 
 @Component({
@@ -18,7 +17,7 @@ export class PatientBasicInfoComponent implements OnInit{
     addOrSave:string = "";
     error:string;
 
-    constructor(private router:Router, private patientService:PatientsService, private dataService:ComponentsDataTransferService){}
+    constructor(private router:Router, private patientService:PatientsService){}
     
     ngOnInit() {
         if(!this.patient.Id){
@@ -37,7 +36,7 @@ export class PatientBasicInfoComponent implements OnInit{
         if(this.formType == "A")
             this.patientService.addPatient(this.patient)
                 .subscribe((res:Response) => {
-                        this.dataService.queriedPatients = [this.patient];
+                        this.patientService.queriedPatients = [this.patient];
                         this.router.navigate(['./patientInfo/1']);
                     }, (error:any) => this.error = "Server Error, Patient wasn't saved!");
         else

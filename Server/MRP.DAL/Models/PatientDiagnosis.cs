@@ -6,6 +6,7 @@ namespace MRP.DAL.Models
 {
     public class PatientDiagnosis
     {
+        public string Id { get; set; }
         public int PatientId { get; set; }
         public int DoctorId { get; set; }
         public string DoctorName { get; set; }
