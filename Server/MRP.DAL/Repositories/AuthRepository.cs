@@ -48,7 +48,6 @@ namespace MRP.DAL.Repositories
                 Email = regInfo.EmailAddress,
                 DateOfBirth = regInfo.DateOfBirth,
                 ContactInfo = regInfo.ContactInfo,
-                Roles = regInfo.Roles,
                 LicenceID = regInfo.LicenceID,
                 Institutions = regInfo.Institutions.ConvertToModelExtension().ToList()
             };

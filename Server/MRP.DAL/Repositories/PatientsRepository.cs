@@ -41,7 +41,7 @@ namespace MRP.DAL.Repositories
             var update = Builders<Patient>.Update.CurrentDate("LastModified").AddToSet(p => p.Diagnosis, diagnosis.ConvertToModel());
             try
             {
-                await _database.GetCollection<Patient>("Patients").UpdateOneAsync(p => p.Id == diagnosis.PatientId, update);
+                await _database.GetCollection<Patient>("Patients").UpdateOneAsync(p => p.PatientId == diagnosis.PatientId, update);
                 return true;
             }
             catch (Exception) { return false; }
@@ -86,7 +86,7 @@ namespace MRP.DAL.Repositories
             List<Patient> collection;
             if (model.PatientId != 0)
             {
-                collection = await _database.GetCollection<Patient>("Patients").Find(p => p.Id == model.PatientId).ToListAsync();
+                collection = await _database.GetCollection<Patient>("Patients").Find(p => p.PatientId == model.PatientId).ToListAsync();
                 return collection.ConvertToDTOExtension().ToList();
             }
             collection = await _database.GetCollection<Patient>("Patients").Find(p => p.Name == model.Name).ToListAsync();

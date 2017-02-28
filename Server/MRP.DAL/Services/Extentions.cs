@@ -99,7 +99,7 @@ namespace MRP.DAL.Services
             return new UserDTO
             {
                 Id = u.Id,
-                UserId = u.UserId
+                UserId = u.UserId,
                 UserName = u.UserName,
                 EmailAddress = u.Email,
                 FullName = u.FullName,
