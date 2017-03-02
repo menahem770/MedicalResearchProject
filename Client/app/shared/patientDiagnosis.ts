@@ -1,8 +1,8 @@
 import { MedicalInstitution } from './medicalInstitution';
 export class PatientDiagnosis{
     Id:string;
-    PatientId: number;
-    DoctorId: number;
+    PatientId: string;
+    DoctorId: string;
     DoctorName: string;
     MedicalInstitution: MedicalInstitution;
     InOutPatient: boolean;
@@ -11,26 +11,26 @@ export class PatientDiagnosis{
     InclusionDate: Date;
     General: string;
     Symptoms: {Key:string,Symptom:SymptomInfo}[];
+
+    constructor(patientId:string){
+        this.PatientId = patientId;
+    }
+    fromJSON(json:Object) {
+        for (var propName in json)
+            this[propName] = json[propName];
+        return this;
+    }
 }
-// export class DiagnosisSymptoms{
-//     HeartRate: number;
-//     BloodPressure: string;
-//     PainfulLimb:SymptomInfo;
-//     Cough:SymptomInfo;
-//     SwollenLimb:SymptomInfo;
-//     Hempotysis:SymptomInfo;
-//     Dyspnea:SymptomInfo;
-//     Syncope:SymptomInfo;
-//     ChestPain:SymptomInfo;
-//     Fever:SymptomInfo;
-//     AbnormalPain:SymptomInfo;
-//     NeurologicalMenifest:SymptomInfo;
-//     Temperture:SymptomInfo;
-//     MentalStatus:SymptomInfo;
-// }
+
 export class SymptomInfo{
     SymptomName:string;
     Is:boolean;
     ExtraInfo:string;
     Value:number;
+
+    fromJSON(json:Object) {
+        for (var propName in json)
+            this[propName] = json[propName];
+        return this;
+    }
 }

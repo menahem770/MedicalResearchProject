@@ -2,7 +2,7 @@ import { MedicalInstitution } from './medicalInstitution';
 
 export class User{
     Id:string;
-    UserId: number;
+    UserId: string;
     UserName: string;
     FullName: string;
     EmailAddress: string;

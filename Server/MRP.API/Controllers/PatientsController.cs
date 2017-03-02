@@ -28,7 +28,7 @@ namespace MRP.API.Controllers
             return Json(patients);
         }
 
-        [Route("AddPatient")]
+        [Route("AddPatient"),HttpPost]
         public async Task<IHttpActionResult> AddPatient([FromBody]PatientDTO patient)
         {
             try
@@ -42,13 +42,13 @@ namespace MRP.API.Controllers
             }
         }
 
-        [Route("AddDiagnosis")]
+        [Route("AddDiagnosis"),HttpPut]
         public async Task<IHttpActionResult> AddDiagnosis([FromBody]PatientDiagnosisDTO diagnosis)
         {
             return await _manager.AddDiagnosis(diagnosis) ? Created<PatientDiagnosisDTO>("", null) : (IHttpActionResult)InternalServerError();
         }
 
-        [Route("EditPatient")]
+        [Route("EditPatient"),HttpPut]
         public async Task<IHttpActionResult> EditPatient([FromBody]PatientDTO patient)
         {
             return await _manager.EditPatient(patient) ? Created<PatientDTO>("", null) : (IHttpActionResult)InternalServerError();

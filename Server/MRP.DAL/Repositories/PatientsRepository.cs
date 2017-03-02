@@ -59,14 +59,14 @@ namespace MRP.DAL.Repositories
 
         public async Task<bool> EditPatientInfo(PatientDTO patient)
         {
-            Patient dbPatient = (Patient)_database.GetCollection<Patient>("Patients").FindSync<Patient>(p => p.Id == patient.Id);
+            List<Patient> dbPatient = await _database.GetCollection<Patient>("Patients").Find(p => p.PatientId == patient.PatientId).ToListAsync();
             var update = Builders<Patient>.Update.CurrentDate("LastModified");
             foreach (PropertyInfo propertyInfo in typeof(Patient).GetProperties())
             {
-                if (propertyInfo.CanRead)
+                if (propertyInfo.CanRead && propertyInfo.Name != "Id" && propertyInfo.Name != "Diagnosis")
                 {
-                    object firstValue = propertyInfo.GetValue(patient, null);
-                    object secondValue = propertyInfo.GetValue(dbPatient, null);
+                    object firstValue = propertyInfo.GetValue(patient).ToString() ?? null;
+                    object secondValue = propertyInfo.GetValue(dbPatient[0]) ?? null;
                     if (!object.Equals(firstValue, secondValue))
                     {
                         update.Set(propertyInfo.Name, propertyInfo.GetValue(patient, null));
@@ -75,7 +75,7 @@ namespace MRP.DAL.Repositories
             }
             try
             {
-                await _database.GetCollection<Patient>("Patients").UpdateOneAsync<Patient>(p => p.Id == patient.Id, update);
+                await _database.GetCollection<Patient>("Patients").UpdateOneAsync<Patient>(p => p.PatientId == patient.PatientId, update);
                 return true;
             }
             catch (Exception) { return false; }
@@ -84,10 +84,14 @@ namespace MRP.DAL.Repositories
         public async Task<IEnumerable<PatientDTO>> GetPatients(FindPatientModel model)
         {
             List<Patient> collection;
-            if (model.PatientId != 0)
+            if (!String.IsNullOrWhiteSpace(model.PatientId))
             {
-                collection = await _database.GetCollection<Patient>("Patients").Find(p => p.PatientId == model.PatientId).ToListAsync();
-                return collection.ConvertToDTOExtension().ToList();
+                try
+                {
+                    collection = await _database.GetCollection<Patient>("Patients").Find(p => p.PatientId == model.PatientId).ToListAsync();
+                    return collection.ConvertToDTOExtension().ToList();
+                }
+                catch (Exception ex) { throw ex; }
             }
             collection = await _database.GetCollection<Patient>("Patients").Find(p => p.Name == model.Name).ToListAsync();
             return collection.ConvertToDTOExtension().ToList();

@@ -1,31 +1,33 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component,OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { PatientsService } from './../../shared/services/patients.service';
 import { Patient } from '../../shared/patient';
-import { PatientDiagnosis } from '../../shared/patientDiagnosis';
-import { TabsComponent } from '../../shared/tabs/tabs.component';
-import { TabComponent } from '../../shared/tabs/tab.component';
 
 @Component({
     moduleId: module.id,
     templateUrl: './patientInfo.component.html'
 })
-export class PatientInfoComponent{
-    pageTitle:string;
-    public pageType:string;
-    public model:Patient;
+export class PatientInfoComponent {
+    pageTitle: string = 'Patient Detail';
+    patient: Patient;
+    errorMessage: string;
+    filterQuery:string = "";
+    rowsOnPage:number = 10;
+    sortBy:string = "date";
+    sortOrder:string = "desc";
+    showDiagnosis:boolean;
 
-    constructor(private route:ActivatedRoute,private dataService:PatientsService){
-        let id:number = +this.route.snapshot.params['id'];
-        if(id == 0){
-            this.model = new Patient();
-            this.model.Diagnosis = new Array<PatientDiagnosis>();
-            this.pageTitle = 'Add New Patient';
-        }
-        else{
-            this.model = this.dataService.queriedPatients[0];
-            this.pageTitle = 'Edit Patient Info';
-        }
+    constructor(private router: Router, private patientsService: PatientsService) {}
+    
+    ngOnInit():void{
+        this.patientsService.changeEmitted$.subscribe(patient => {
+            this.patient = patient;
+            this.showDiagnosis = patient.Diagnosis && patient.Diagnosis.length > 0;
+        });      
+    }
+
+    openDetails(diagnosisNum:number):void{
+        this.router.navigate(['./patientDiagnosisDetails/'+diagnosisNum]);
     }
 }

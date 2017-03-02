@@ -1,6 +1,6 @@
 import { PatientsService } from '../shared/services/patients.service';
-import { Component } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UsersService } from '../shared/services/users.service';
 import { User } from './../shared/user';
 
@@ -11,21 +11,23 @@ import { User } from './../shared/user';
     styleUrls: ['./mainApp.component.css'],
     providers:[PatientsService,UsersService]
 })
-export class MainAppComponent{
+export class MainAppComponent implements OnInit{
     loggedInUser:User;
     pageTitle:string = 'Medical Research Project';
     loginTitle:string;
     loggedIn:boolean = false;
 
-    constructor(private router:Router,
-                private usersService:UsersService,
-                private route:ActivatedRoute){
+    constructor(private router:Router,private usersService:UsersService){
+        this.usersService.changeEmitted$.subscribe(user => this.login(user));
+        
+    }
+    ngOnInit():void{
         if(!this.loggedInUser && sessionStorage.getItem("token")){
             let un = JSON.parse(sessionStorage.getItem('token')).username;
             this.usersService.getLoggedUser(un)
-                .subscribe(res => this.usersService.emitChange(new User().fromJSON(res)));
+                .subscribe(res => this.usersService.emitChange(new User().fromJSON(res)), 
+                (error:any) => this.logout());
         }
-        this.usersService.changeEmitted$.subscribe(user => this.login(user));
     }
     login(user:User):void{
         if(user){
@@ -36,7 +38,7 @@ export class MainAppComponent{
     }
     logout():void{
         this.loggedIn = false;
-        UsersService.prototype.logout();
+        this.usersService.logout();
         this.router.navigate(['/login']);
     }
 }

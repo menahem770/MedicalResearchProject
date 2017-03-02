@@ -1,4 +1,4 @@
 export class FindPatientModel{
-    PatientId:number;
+    PatientId:string;
     Name:string;
 }

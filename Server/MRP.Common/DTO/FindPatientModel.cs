@@ -8,7 +8,7 @@ namespace MRP.Common.DTO
 {
     public class FindPatientModel
     {
-        public int PatientId { get; set; }
+        public string PatientId { get; set; }
         public string Name { get; set; }
     }
 }

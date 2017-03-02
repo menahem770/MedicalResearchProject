@@ -9,7 +9,7 @@ namespace MRP.Common.DTO
     public class UserDTO
     {
         public string Id { get; set; }
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public string FullName { get; set; }
         public string UserName { get; set; }
         public string EmailAddress { get; set; }
@@ -17,6 +17,6 @@ namespace MRP.Common.DTO
         public List<string> Roles { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string LicenceID { get; set; }
-        public IEnumerable<MedicalInstitutionDTO> Institutions { get; set; }
+        public IEnumerable<MedicalInstitutionDTO> Institutions { get; set; } = new List<MedicalInstitutionDTO>();
     }
 }

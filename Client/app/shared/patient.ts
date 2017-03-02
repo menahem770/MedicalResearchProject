@@ -1,17 +1,18 @@
 import { PatientDiagnosis } from './patientDiagnosis'
 export class Patient{
-    Id: string;
-    PatientId:number;
+    Id:string;
+    PatientId:string;
     Name: string;
     DateOfBirth: Date;
     Gender: Gender;
-    Weight: number;
-    Height: number;
     Race: Race;
     InclusionDate: Date;
     General: string;
     Diagnosis:PatientDiagnosis[];
 
+    constructor(){
+        this.Diagnosis = new Array<PatientDiagnosis>();
+    }
     fromJSON(json:Object) {
         for (var propName in json)
             this[propName] = json[propName];

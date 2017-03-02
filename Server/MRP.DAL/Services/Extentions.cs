@@ -36,11 +36,7 @@ namespace MRP.DAL.Services
             {
                 foreach (MedicalInstitutionDTO m in ins)
                 {
-                    yield return new MedicalInstitution
-                    {
-                        ID = m.ID,
-                        Name = m.Name
-                    };
+                    yield return m.ConvertToModel();
                 }
             }
         }
@@ -123,8 +119,6 @@ namespace MRP.DAL.Services
                 Name = p.Name,
                 DateOfBirth = p.DateOfBirth,
                 Gender = p.Gender,
-                Weight = p.Weight,
-                Height = p.Height,
                 Race = p.Race,
                 InclusionDate = p.InclusionDate,
                 General = p.General,
@@ -153,11 +147,7 @@ namespace MRP.DAL.Services
 
         public static MedicalInstitutionDTO ConvertToDTO(this MedicalInstitution ins)
         {
-            return new MedicalInstitutionDTO
-            {
-                ID = ins.ID,
-                Name = ins.Name
-            };
+            return new MedicalInstitutionDTO { Id = ins.Id, Name = ins.Name };
         }
 
         public static Patient ConvertToModel(this PatientDTO p)
@@ -169,8 +159,6 @@ namespace MRP.DAL.Services
                 Name = p.Name,
                 DateOfBirth = p.DateOfBirth,
                 Gender = p.Gender,
-                Weight = p.Weight,
-                Height = p.Height,
                 Race = p.Race,
                 InclusionDate = p.InclusionDate,
                 General = p.General,
@@ -199,11 +187,7 @@ namespace MRP.DAL.Services
 
         public static MedicalInstitution ConvertToModel(this MedicalInstitutionDTO ins)
         {
-            return new MedicalInstitution
-            {
-                ID = ins.ID,
-                Name = ins.Name
-            };
+            return new MedicalInstitution { Id = ins.Id, Name = ins.Name };
         }
     }
 

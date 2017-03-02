@@ -1,5 +1,6 @@
 import { MedicalInstitution } from '../../shared/medicalInstitution';
-export class RegistrationInfo{
+export class RegistrationInfo {
+    UserId:string
     Username: string;
     Password: string;
     FullName: string;

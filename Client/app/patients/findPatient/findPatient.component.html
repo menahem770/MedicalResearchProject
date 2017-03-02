@@ -9,12 +9,13 @@
                     <form>
                         <div class="form-group">
                             <label for="id">ID</label>
-                            <input type="number" class="form-control" id="id" [(ngModel)]="patient.PatientId" (ngModelChange)="patient.PatientId = $event" name="id">
+                            <input type="tel" class="form-control" id="id" [(ngModel)]="patient.PatientId" (ngModelChange)="patient.PatientId = $event" name="id">
                         </div>
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="string" class="form-control" id="name" [(ngModel)]="patient.name" (ngModelChange)="patient.name = $event" name="name">
                         </div>
+                        <h3 id='errorMsg' *ngIf='error != ""'>{{error}}</h3>
                         <button type="button" class="btn btn-primary" (click)='find()'>Find</button>
                     </form>
                 </div>

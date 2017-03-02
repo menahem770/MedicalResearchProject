@@ -4,11 +4,13 @@
         <div class="col-md-6 col-md-offset-3">
             <div class="row">
                 <div class="col-lg-12">
-                    <form>
-                        <!--<tab [tabTitle]="'Symptoms tab A'">
-                            <mrp-symptoms-tab [patient]='patient' *ngIf="patient">
-                            </mrp-symptoms-tab>
-                        </tab>-->
+                    <form [formGroup]="formGroup">
+                        <tabs>
+                            <tab [tabTitle]="'Symptoms tab A'" [formGroup]="formGroup">
+                                <mrp-symptoms-tab [patient]='patient' *ngIf="patient">
+                                </mrp-symptoms-tab>
+                            </tab>
+                        </tabs>
                         
                         <button type="submit" class="btn btn-primary" (click)='submit()'>Save</button>
                         <button type="button" class="btn btn-primary" (click)='goBack()'>Cancel</button>

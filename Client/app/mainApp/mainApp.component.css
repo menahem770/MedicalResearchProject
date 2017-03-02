@@ -15,7 +15,7 @@ li button{
 .navbar-brand {
   padding: 0px;
 }
-a.navbar-brand{
+#appTitle{
   padding-top: 16px;
 }
 .navbar-brand>img {
@@ -37,8 +37,4 @@ a.navbar-brand{
 }
 .navbar-toggle {
     z-index: 1;
-}
-.footer{
-  position:absolute;
-  bottom:0;
 }

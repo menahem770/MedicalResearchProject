@@ -44,7 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTO\DiagnosisSymptomsDTO.cs" />
     <Compile Include="DTO\FindPatientModel.cs" />
     <Compile Include="DTO\Gender.cs" />
     <Compile Include="DTO\LoginInfo.cs" />
