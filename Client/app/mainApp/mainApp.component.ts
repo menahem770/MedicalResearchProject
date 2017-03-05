@@ -1,3 +1,4 @@
+import { PatientsFormSchemaService } from './../shared/services/patientsFormSchema.service';
 import { PatientsService } from '../shared/services/patients.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -9,7 +10,7 @@ import { User } from './../shared/user';
     moduleId: module.id,
     templateUrl: './mainApp.component.html',
     styleUrls: ['./mainApp.component.css'],
-    providers:[PatientsService,UsersService]
+    providers:[PatientsService,UsersService,PatientsFormSchemaService]
 })
 export class MainAppComponent implements OnInit{
     loggedInUser:User;

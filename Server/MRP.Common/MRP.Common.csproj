@@ -54,6 +54,7 @@
     <Compile Include="DTO\SymptomInfo.cs" />
     <Compile Include="DTO\UserDTO.cs" />
     <Compile Include="IRepositories\IAuthRpository.cs" />
+    <Compile Include="IRepositories\IPatientsFormSchemaRepository.cs" />
     <Compile Include="IRepositories\IPatientsRepository.cs" />
     <Compile Include="IRepositories\IUsersRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

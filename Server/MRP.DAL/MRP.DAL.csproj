@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="Models\MedicalInstitution.cs" />
     <Compile Include="Models\PatientDiagnosis.cs" />
+    <Compile Include="Repositories\PatientsFormSchemaRepository.cs" />
     <Compile Include="Repositories\PatientsRepository.cs" />
     <Compile Include="Repositories\UsersRepository.cs" />
     <Compile Include="Services\Extentions.cs" />
