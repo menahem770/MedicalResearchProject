@@ -14,6 +14,7 @@ export class PatientDiagnosis{
 
     constructor(patientId:string){
         this.PatientId = patientId;
+        this.Symptoms = new Array();
     }
     fromJSON(json:Object) {
         for (var propName in json)
@@ -24,9 +25,18 @@ export class PatientDiagnosis{
 
 export class SymptomInfo{
     SymptomName:string;
-    Is:boolean;
-    ExtraInfo:string;
-    Value:number;
+    BoolValue:boolean;
+    StringValue:string;
+    NumberValue:number;
+    DateValue:Date;
+
+    constructor(name:string,bool:boolean,str:string,num:number,date:Date){
+        this.SymptomName = name;
+        if(bool) this.BoolValue = bool;
+        if(str) this.StringValue = str;
+        if(num) this.NumberValue = num;
+        if(date) this.DateValue = date;
+    }
 
     fromJSON(json:Object) {
         for (var propName in json)

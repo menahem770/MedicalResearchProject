@@ -1,11 +1,15 @@
 ﻿using MRP.BL;
 using MRP.Common.DTO;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Results;
 
@@ -45,6 +49,21 @@ namespace MRP.API.Controllers
         [Route("AddDiagnosis"),HttpPut]
         public async Task<IHttpActionResult> AddDiagnosis([FromBody]PatientDiagnosisDTO diagnosis)
         {
+            string s;
+            using (var contentStream = await this.Request.Content.ReadAsStreamAsync())
+            {
+                contentStream.Seek(0, SeekOrigin.Begin);
+                using (var sr = new StreamReader(contentStream))
+                {
+                    string rawContent = sr.ReadToEnd();
+                    s = rawContent;
+                    // use raw content here
+                }
+            }
+            //HttpContent requestContent = Request.Content;
+            //string jsonContent = requestContent.ReadAsStringAsync().Result;
+            //var symptoms = jsonContent.Property("Symptoms");
+            PatientDiagnosisDTO contact = JsonConvert.DeserializeObject<PatientDiagnosisDTO>(s);
             return await _manager.AddDiagnosis(diagnosis) ? Created<PatientDiagnosisDTO>("", null) : (IHttpActionResult)InternalServerError();
         }
 

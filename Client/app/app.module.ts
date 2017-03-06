@@ -14,14 +14,14 @@ import { LoginRegisterComponent } from './loginRegistration/loginRegister.compon
 import { EqualValidator } from './loginRegistration/shared/equalValidator.directive';
 import { PatientInfoComponent } from './patients/patientInfo/patientInfo.component';
 import { PatientEditInfoComponent } from './patients/patientInfo/patientInfoEdit.component';
-import { PatientInfoDiagnosisListComponent } from './patients/patientInfo/patientInfo.diagnosisList.component';
 import { TabComponent } from './shared/tabs/tab.component';
 import { TabsComponent } from './shared/tabs/tabs.component';
 import { DataFilterPipe } from './shared/dataFilter.pipe';
 import { PatientDiagnosisDetailsComponent } from './patients/patientInfo/patient.diagnosisDetails.component';
 import { FindPatientComponent } from './patients/findPatient/findPatient.component';
 import { CanActivateOAuthGuard } from './shared/services/canActivateOAuthGuard';
-import { SymptomsTabComponent } from './patients/patientInfo/symptomsTab.component';
+//import { PatientInfoDiagnosisListComponent } from './patients/patientInfo/patientInfo.diagnosisList.component';
+//import { SymptomsTabComponent } from './patients/patientInfo/symptomsTab.component';
 //import { UnderConstructionComponent } from './shared/metronic/underConstruction.component';
 
 @NgModule({
@@ -57,14 +57,14 @@ import { SymptomsTabComponent } from './patients/patientInfo/symptomsTab.compone
                   EqualValidator,
                   PatientInfoComponent,
                   PatientEditInfoComponent,
-                  PatientInfoDiagnosisListComponent,
                   PatientDiagnosisDetailsComponent,
                   FindPatientComponent,
                   TabComponent,
                   TabsComponent,
-                  DataFilterPipe,
-                  SymptomsTabComponent
-                  //UnderConstructionComponent
+                  DataFilterPipe
+                  //SymptomsTabComponent,
+                  //PatientInfoDiagnosisListComponent,
+                  //UnderConstructionComponent,
                 ],
   providers:    [CanActivateOAuthGuard],
   bootstrap:    [ AppComponent ]

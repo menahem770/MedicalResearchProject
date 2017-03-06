@@ -8,7 +8,6 @@ import {
     DynamicInputModel
 } from "@ng2-dynamic-forms/core";
 
-import { SECOND_DYNAMIC_FORM_MODEL } from './second-dynamic-form.model';
 import { Patient } from './../../shared/patient';
 import { Component, Input, OnInit } from '@angular/core';
 
@@ -19,10 +18,8 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class SymptomsTabComponent implements  OnInit {
     @Input() patient:Patient;
-    @Input() tabTitle:string;
+    @Input() formModel: DynamicFormControlModel;
     @Input() formGroup: FormGroup;
-
-    formModel: Array<DynamicFormControlModel> = SECOND_DYNAMIC_FORM_MODEL;
     exampleControl: FormControl;
     exampleModel: DynamicInputModel;
     arrayControl: FormArray;
@@ -33,16 +30,16 @@ export class SymptomsTabComponent implements  OnInit {
     ngOnInit() {
         //let json: string = JSON.stringify(this.formModel);
         //this.formModel = this.formService.fromJSON(json);
-        this.formGroup = this.formService.createFormGroup(this.formModel);
+        //this.formGroup = this.formService.createFormGroup([this.formModel]);
         
-        this.exampleControl = <FormControl> this.formGroup.get("bootstrapFormGroup1").get("bootstrapInput"); // Type assertion for having updateValue method available
-        this.exampleModel = <DynamicInputModel> this.formService.findById(
-            "bootstrapInput", (<DynamicFormGroupModel> this.formModel[0]).group);
+        //this.exampleControl = <FormControl> this.formGroup.get("bootstrapFormGroup1").get("bootstrapInput"); // Type assertion for having updateValue method available
+        //this.exampleModel = <DynamicInputModel> this.formService.findById(
+            //"bootstrapInput", (<DynamicFormGroupModel> this.formModel[0]).group);
         //this.exampleControl.valueChanges.subscribe((value: string) => console.log("example checkbox field changed to: ", value, typeof value));
 
-        this.arrayControl = <FormArray> this.formGroup.get("bootstrapFormGroup2").get("bootstrapFormArray");
-        this.arrayModel = <DynamicFormArrayModel> this.formService.findById(
-            "bootstrapFormArray", (<DynamicFormGroupModel> this.formModel[1]).group);
+        //this.arrayControl = <FormArray> this.formGroup.get("bootstrapFormGroup2").get("bootstrapFormArray");
+        //this.arrayModel = <DynamicFormArrayModel> this.formService.findById(
+            //"bootstrapFormArray", (<DynamicFormGroupModel> this.formModel[1]).group);
     }
 
     add() {
