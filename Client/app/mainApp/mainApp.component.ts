@@ -1,3 +1,4 @@
+import { EnumToOptionsFilter } from './../shared/components/enumToOptionsFilter.pipe';
 import { PatientsFormSchemaService } from './../shared/services/patientsFormSchema.service';
 import { PatientsService } from '../shared/services/patients.service';
 import { Component, OnInit } from '@angular/core';
@@ -10,7 +11,7 @@ import { User } from './../shared/user';
     moduleId: module.id,
     templateUrl: './mainApp.component.html',
     styleUrls: ['./mainApp.component.css'],
-    providers:[PatientsService,UsersService,PatientsFormSchemaService]
+    providers:[PatientsService,UsersService,PatientsFormSchemaService,EnumToOptionsFilter]
 })
 export class MainAppComponent implements OnInit{
     loggedInUser:User;

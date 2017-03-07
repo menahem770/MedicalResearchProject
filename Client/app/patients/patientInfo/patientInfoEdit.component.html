@@ -11,7 +11,7 @@
                     <form (ngSubmit)="submit()">
                         <div class="form-group">
                             <label for="id">ID</label>
-                            <input type="tel" class="form-control" id="id" [(ngModel)]="patient.PatientId" (ngModelChange)="patient.PatientId = $event" name="id" required minlength="9" maxlength="9" [disabled]="isFieldDisabled">
+                            <input type="tel" class="form-control" id="id" [(ngModel)]="patient.PatientId" (ngModelChange)="patient.PatientId = $event" name="id" required minlength="9" maxlength="9" [readonly]="isFieldDisabled">
                         </div>
                         <div class="form-group">
                             <label for="name">Name</label>
@@ -19,23 +19,24 @@
                         </div>
                         <div class="form-group">
                             <label for="dateOfBirth">Date of Birth</label>
-                            <input type="date" class="form-control" id="dateOfBirth" [(ngModel)]="patient.DateOfBirth" (ngModelChange)="patient.DateOfBirth = $event" name="dateOfBirth" required>
+                            <input *ngIf='formType == "A"' type="date" class="form-control" id="dateOfBirth" [(ngModel)]="patient.DateOfBirth" (ngModelChange)="patient.DateOfBirth = $event" name="dateOfBirth" required>
+                            <input *ngIf='formType == "E"' type="text" class="form-control" id="dateOfBirth" [value]="patient.DateOfBirth | date:'dd/MM/yyyy'" name="dateOfBirth" readonly>
                         </div>
                         <div class="form-group">
                             <label for="gender">Gender</label>
                             <select class="form-control" id="gender" [(ngModel)]="patient.Gender" (ngModelChange)="patient.Gender = $event" name="gender" required>
-                                <option *ngFor="let gen of genders" [value]="gen" [label]="genders[gen]"></option>
+                                <option *ngFor="let gen of genders | enumToOptions" [value]="gen" [label]="genders[gen]"></option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="race">Race</label>
                             <select class="form-control" id="race" [(ngModel)]="patient.Race" (ngModelChange)="patient.Race = $event" name="race" required>
-                                <option *ngFor="let race of races" [value]="race" [label]="races[race]"></option>
+                                <option *ngFor="let race of races | enumToOptions" [value]="race" [label]="races[race]"></option>
                             </select>
                         </div>
                         <div class="form-group" *ngIf='formType == "E"'>
                             <label for="inclusionDate">Inclusion Date</label>
-                            <input type="date" class="form-control" id="inclusionDate"[(ngModel)]="patient.InclusionDate" value="{{patient.InclusionDate | date: 'dd/MM/yyyy'}}" (ngModelChange)="patient.InclusionDate = $event" name="inclusionDate" required [disabled]="isFieldDisabled">
+                            <input type="text" class="form-control" id="inclusionDate" [value]="patient.InclusionDate | date:'dd/MM/yyyy'" name="inclusionDate" readonly>
                         </div>
                         <div class="form-group">
                             <label for="general">General Comments</label>

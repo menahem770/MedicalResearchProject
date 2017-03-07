@@ -54,7 +54,7 @@ export class PatientDiagnosisDetailsComponent implements OnInit {
     }
     submit(): void {
         this.diagnosis.PatientId = this.patient.PatientId;
-        this.patientsService.AddDiagnosis(this.diagnosis);
+        this.patientsService.addDiagnosis(this.diagnosis);
         this.goBack();
     }
     goBack(): void {
@@ -117,9 +117,9 @@ export class PatientDiagnosisDetailsComponent implements OnInit {
     //     console.log(`BLUR event on ${$event.model.id}: `, $event);
     // }
 
-    // onChange($event:any) {
-    //     console.log(`CHANGE event on ${$event.model.id}: `, $event);
-    // }
+    onChange($event:any) {
+        console.log(`CHANGE event on ${$event.model.id}: `, $event);
+    }
 
     // onFocus($event:any) {
     //     console.log(`FOCUS event on ${$event.model.id}: `, $event);

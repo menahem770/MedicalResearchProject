@@ -51,26 +51,31 @@ namespace MRP.DAL.Repositories
 
         public async Task<bool> EditPatientInfo(PatientDTO patient)
         {
-            List<Patient> dbPatient = await _patients.Find(p => p.PatientId == patient.PatientId).ToListAsync();
-            var update = Builders<Patient>.Update.CurrentDate("LastModified");
-            foreach (PropertyInfo propertyInfo in typeof(Patient).GetProperties())
+            Patient clientPatient = patient.ConvertToModel();
+            List<Patient> dbPatient = await _patients.Find(p => p.PatientId == clientPatient.PatientId).ToListAsync();
+            var updates = new List<UpdateDefinition<Patient>>();
+            updates.Add(Builders<Patient>.Update.CurrentDate("LastModified"));
+            string[] unchanged = { "Id", "PatientId", "LastModified", "Diagnosis" };
+            IEnumerable<PropertyInfo> properties = typeof(Patient).GetProperties().Where(p => !unchanged.Contains(p.Name));
+            foreach (PropertyInfo propertyInfo in properties)
             {
-                if (propertyInfo.CanRead && propertyInfo.Name != "Id" && propertyInfo.Name != "Diagnosis")
+                if (propertyInfo.CanRead)
                 {
-                    object firstValue = propertyInfo.GetValue(patient).ToString() ?? null;
-                    object secondValue = propertyInfo.GetValue(dbPatient[0]) ?? null;
+                    object firstValue = propertyInfo.GetValue(clientPatient);
+                    object secondValue = propertyInfo.GetValue(dbPatient[0]);
                     if (!Equals(firstValue, secondValue))
                     {
-                        update.Set(propertyInfo.Name, propertyInfo.GetValue(patient, null));
+                        updates.Add(Builders<Patient>.Update.Set(propertyInfo.Name, firstValue));
                     }
                 }
             }
             try
             {
-                await _patients.UpdateOneAsync(p => p.PatientId == patient.PatientId, update);
+                var update = Builders<Patient>.Update.Combine(updates);
+                await _patients.UpdateOneAsync(p => p.PatientId == clientPatient.PatientId, update);
                 return true;
             }
-            catch (Exception) { return false; }
+            catch (Exception ex) { throw ex; }
         }
 
         public async Task<IEnumerable<PatientDTO>> GetPatients(FindPatientModel model)

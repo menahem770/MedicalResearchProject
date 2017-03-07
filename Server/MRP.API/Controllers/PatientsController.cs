@@ -47,24 +47,11 @@ namespace MRP.API.Controllers
         }
 
         [Route("AddDiagnosis"),HttpPut]
-        public async Task<IHttpActionResult> AddDiagnosis([FromBody]PatientDiagnosisDTO diagnosis)
+        public async Task<IHttpActionResult> AddDiagnosis()
         {
-            string s;
-            using (var contentStream = await this.Request.Content.ReadAsStreamAsync())
-            {
-                contentStream.Seek(0, SeekOrigin.Begin);
-                using (var sr = new StreamReader(contentStream))
-                {
-                    string rawContent = sr.ReadToEnd();
-                    s = rawContent;
-                    // use raw content here
-                }
-            }
-            //HttpContent requestContent = Request.Content;
-            //string jsonContent = requestContent.ReadAsStringAsync().Result;
-            //var symptoms = jsonContent.Property("Symptoms");
-            PatientDiagnosisDTO contact = JsonConvert.DeserializeObject<PatientDiagnosisDTO>(s);
-            return await _manager.AddDiagnosis(diagnosis) ? Created<PatientDiagnosisDTO>("", null) : (IHttpActionResult)InternalServerError();
+            HttpContent requestContent = Request.Content;
+            string jsonContent = requestContent.ReadAsStringAsync().Result;
+            return await _manager.AddDiagnosis(jsonContent) ? Created<PatientDiagnosisDTO>("", null) : (IHttpActionResult)InternalServerError();
         }
 
         [Route("EditPatient"),HttpPut]

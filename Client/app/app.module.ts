@@ -1,3 +1,4 @@
+import { EnumToOptionsFilter } from './shared/components/enumToOptionsFilter.pipe';
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
@@ -16,10 +17,10 @@ import { PatientInfoComponent } from './patients/patientInfo/patientInfo.compone
 import { PatientEditInfoComponent } from './patients/patientInfo/patientInfoEdit.component';
 import { TabComponent } from './shared/tabs/tab.component';
 import { TabsComponent } from './shared/tabs/tabs.component';
-import { DataFilterPipe } from './shared/dataFilter.pipe';
 import { PatientDiagnosisDetailsComponent } from './patients/patientInfo/patient.diagnosisDetails.component';
 import { FindPatientComponent } from './patients/findPatient/findPatient.component';
 import { CanActivateOAuthGuard } from './shared/services/canActivateOAuthGuard';
+import { DataFilterPipe } from './shared/components/dataFilter.pipe';
 //import { PatientInfoDiagnosisListComponent } from './patients/patientInfo/patientInfo.diagnosisList.component';
 //import { SymptomsTabComponent } from './patients/patientInfo/symptomsTab.component';
 //import { UnderConstructionComponent } from './shared/metronic/underConstruction.component';
@@ -61,7 +62,8 @@ import { CanActivateOAuthGuard } from './shared/services/canActivateOAuthGuard';
                   FindPatientComponent,
                   TabComponent,
                   TabsComponent,
-                  DataFilterPipe
+                  EnumToOptionsFilter,
+                  DataFilterPipe,
                   //SymptomsTabComponent,
                   //PatientInfoDiagnosisListComponent,
                   //UnderConstructionComponent,

@@ -39,7 +39,7 @@ export class PatientsService{
             .catch(this._handleError);
     }
 
-    AddDiagnosis(diagnosis:PatientDiagnosis):any{
+    addDiagnosis(diagnosis:PatientDiagnosis):any{
         let accessToken:string = JSON.parse(sessionStorage.getItem('token')).token;
         let headers: Headers = new Headers({'Authorization':'Bearer '+accessToken});
         let options: RequestOptions = new RequestOptions({headers: headers});

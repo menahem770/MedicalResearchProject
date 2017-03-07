@@ -16,15 +16,19 @@
                 </div>
                 <div class="row">
                     <div class="col-md-3">Date of Birth:</div>
-                    <div class="col-md-6">{{patient.DateOfBirth}}</div>
+                    <div class="col-md-6">{{patient.DateOfBirth | date:'dd/MM/yyyy'}}</div>
                 </div>
                 <div class="row">
                     <div class="col-md-3">Race:</div>
-                    <div class="col-md-6">{{patient.Race}}</div>
+                    <div class="col-md-6">{{races[patient.Race]}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">Gender:</div>
+                    <div class="col-md-6">{{genders[patient.Gender]}}</div>
                 </div>
                 <div class="row">
                     <div class="col-md-3">Inclusion Date:</div>
-                    <div class="col-md-6">{{patient.InclusionDate}}</div>
+                    <div class="col-md-6">{{patient.InclusionDate | date:'dd/MM/yyyy'}}</div>
                 </div>
                 <div class="row">
                     <div class="col-md-3">General Info:</div>
@@ -91,9 +95,9 @@
                         <td>
                             <button (click)="openDetails(i)" class="btn btn-primary">Details</button>
                         </td>
-                        <td>{{diag.doctorName}}</td>
-                        <td>{{diag.diagnosisDate}}</td>
-                        <td class="text-right">{{diag.medicalInstitution}}</td>
+                        <td>{{diag.DoctorName}}</td>
+                        <td>{{diag.DiagnosisDate}}</td>
+                        <td>{{diag.MedicalInstitution.Name}}</td>
                     </tr>
                 </tbody>
                 <tfoot>

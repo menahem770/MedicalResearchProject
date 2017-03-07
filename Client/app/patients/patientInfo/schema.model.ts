@@ -36,7 +36,7 @@ export const MY_DYNAMIC_FORM_MODEL = [
             ), 
             new DynamicInputModel(
                 {
-                    id: "פatientCode",
+                    id: "PatientCode",
                     label: "Patient code",
                     placeholder: "",
                     readOnly:true

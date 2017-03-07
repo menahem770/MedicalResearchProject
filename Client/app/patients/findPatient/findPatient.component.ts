@@ -19,6 +19,7 @@ export class FindPatientComponent{
     
     constructor(private patientsService:PatientsService, private router:Router,private dataService:UsersService){
         this.dataService.changeEmitted$.subscribe(user => this.loggedInUser = <User>user);
+        this.patient.PatientId = '026606657';
     }
 
     find():void{
